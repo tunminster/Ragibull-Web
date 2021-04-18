@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
+  
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="row">
+      <div class="col-sm-3">
+          
+        </div>
+        <div class="col-sm-3">
+          <a href="https://apps.apple.com/us/app/ragibull/id1556833583">
+          <img src="/assets/images/download_app_store.png" width="250px"/>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="https://play.google.com/store/apps/details?id=com.ragibull.app">
+            <img src="/assets/images/get-it-on-google-play.png" width="250px"/>
+          </a>
+        </div>
+        <div class="col-sm-3">
+        </div>
+      </div>      
     </div>
   );
 }
