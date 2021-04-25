@@ -1,0 +1,97 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+variables:
+  buildConfiguration: 'Release'
+  tag: '$(Build.SourceBranchName)'
+  imageRepository: 'rw-app'
+
+stages:
+  - stage: Build
+    displayName: 'Build project'
+
+    jobs:
+      - job: Build
+        displayName: 'Build project'
+
+        pool:
+          vmImage: ubuntu-latest
+
+        steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '10.x'
+          displayName: 'Install Node.js'
+
+        - script: |
+            npm install
+            npm run build
+          displayName: 'npm install and build'
+          
+  - stage: DeployDev
+    displayName: 'Deploy dev'
+    dependsOn: Build
+    condition: and(succeeded(),eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    
+    variables:
+        repository-image: 'pngoacr.azurecr.io/rw-app:$(Build.SourceBranchName)'
+        acr-secret-name: 'hn-prod-acr-secret'
+        appsettings-secret-name: 'rw-appsettings-secret'
+        host-url: 'www.ragibull.com'
+        env-name: 'Development'
+        env-namespace: 'hn-prod'
+
+    jobs:
+      - job: DeployApp
+        displayName: 'Deploy web app'
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: DockerInstaller@0
+            inputs:
+              dockerVersion: '17.09.0-ce'   
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'hn-acr-connection'
+              repository: '$(imageRepository)'
+              command: 'buildAndPush'
+              Dockerfile: '**/Dockerfile'
+              buildContext: .
+              tags: |
+                $(tag)  
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(System.DefaultWorkingDirectory)/devops'
+              Contents: 'rw-deployment.yaml'  
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/devops'   
+
+          - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+            displayName: 'Replace tokens in deploy file'
+            inputs:
+              rootDirectory: '$(Build.ArtifactStagingDirectory)/devops'
+              targetFiles: 'rw-deployment.yaml'
+              escapeType: none    
+
+          - script: 'cat $(Build.ArtifactStagingDirectory)/devops/rw-deployment.yaml'
+            displayName: 'Cat deploy'  
+            
+          - task: KubectlInstaller@0
+            inputs:
+              kubectlVersion: 'latest'
+
+          - task: Kubernetes@1
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: 'hn-platform-aks-prod'
+              namespace: 'hn-prod'
+              command: 'apply'
+              arguments: '-f  $(Build.ArtifactStagingDirectory)/devops/rw-deployment.yaml'
+              secretType: 'dockerRegistry'
+              containerRegistryType: 'Container Registry'
+              dockerRegistryEndpoint: 'hn-acr-connection'
+              secretName: 'hn-prod-acr-secret'  
