@@ -1,0 +1,347 @@
+$red: #e51b23;
+$dark: #222;
+$textColor: #3c3c3c;
+
+//Media Breakpoint
+$xl: 1024px;
+$lg: 991px;
+$md: 767px;
+$sm: 575px;
+$xs: 340px;
+
+@mixin xl {
+  @media (max-width: #{$xl}) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (max-width: #{$lg}) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: #{$md}) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (max-width: #{$sm}) {
+    @content;
+  }
+}
+@mixin xs {
+  @media (max-width: #{$xs}) {
+    @content;
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin box-shadow($boxShadow) {
+  -webkit-box-shadow: $boxShadow;
+  -moz-box-shadow: $boxShadow;
+  box-shadow: $boxShadow;
+}
+
+#main {
+  > div {
+    width: 100%;
+  }
+}
+
+// Social Media
+.SocialMedia {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  padding-left: 5px;
+  z-index: 1;
+  display: inline-block;
+  width: 36px !important;
+  @include md {
+    display: none;
+  }
+  ul {
+    list-style: none;
+    margin: -41px 0 0;
+    padding: 0;
+    display: inline-block;
+    li {
+      &:not(:last-child) {
+        padding-bottom: 5px;
+      }
+      a {
+        display: block;
+        img {
+          width: 30px;
+        }
+      }
+    }
+  }
+}
+
+// Banner
+.Banner {
+  padding-top: 100px;
+  width: 100%;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f4;
+  background-image: url(../assets/images/banner-bg.jpg);
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: 1170px;
+  @include lg {
+    background-size: contain;
+    min-height: 350px;
+  }
+  @include md {
+    position: relative;
+    padding-top: 200px;
+    min-height: auto;
+    padding-bottom: 10px;
+  }
+  @include sm {
+    padding-top: 170px;
+    padding-bottom: 0;
+    background-image: none;
+    text-align: center;
+  }
+  &_Title {
+    position: relative;
+    font-size: 38px;
+    font-weight: 600;
+    color: $dark;
+    line-height: 50px;
+    margin: 0;
+    text-transform: uppercase;
+    padding-left: 40px;
+    @include lg {
+      font-size: 30px;
+      line-height: 40px;
+      padding-left: 0;
+    }
+    @include md {
+      font-size: 22px;
+      line-height: 32px;
+      margin-bottom: 20px;
+    }
+    span {
+      display: block;
+      color: $red;
+    }
+  }
+  img {
+    display: none;
+    width: 100%;
+    max-width: 300px;
+    @include sm {
+      display: inline-block;
+    }
+  }
+}
+
+// About
+.About {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  text-align: center;
+  @include lg {
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+  &_Title {
+    font-size: 32px;
+    font-weight: 600;
+    color: $red;
+    margin: 0 0 20px;
+    @include lg {
+      font-size: 26px;
+    }
+    span {
+      font-size: 12px;
+      color: $dark;
+      display: block;
+      padding-top: 5px;
+    }
+  }
+  .Services {
+    padding-top: 15px;
+    @include lg {
+      padding-top: 0;
+    }
+    &_box {
+      padding: 15px;
+      @include lg {
+        padding: 10px;
+      }
+      @include md {
+        padding: 0 0 15px;
+        width: 100%;
+      }
+      .bg {
+        padding: 30px 15px;
+        @include box-shadow(0px 0px 6px rgba(0, 0, 0, 0.25));
+        @include border-radius(25px);
+
+        a.custom-link-btn {
+          min-width: 64px;
+          padding: 8px 20px;
+          line-height: 1.75;
+          letter-spacing: 0.02857em;
+        }
+
+        img {
+          height: 150px;
+          margin-bottom: 10px;
+        }
+        h3 {
+          margin: 0 0 5px;
+          @include lg {
+            padding: 0 15px;
+            font-size: 16px;
+          }
+        }
+        p {
+          margin: 0 0 15px;
+        }
+      }
+    }
+  }
+}
+
+// Steps
+.Services {
+  .Steps {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f6f6f6;
+    @include lg {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+    &:nth-child(2n + 2) {
+      background-color: #fff;
+      .Steps_Text {
+        padding-left: 50px;
+        @include lg {
+          padding-left: 15px;
+        }
+        @include md {
+          padding-left: 0;
+        }
+      }
+    }
+    &_Img {
+      @include md {
+        text-align: center;
+        width: 100%;
+        order: 1;
+      }
+      img {
+        display: inline-block;
+        @include md {
+          max-width: 280px;
+        }
+        @include sm {
+          max-height: 250px;
+        }
+      }
+    }
+    &_Text {
+      @include md {
+        padding-top: 15px;
+        width: 100%;
+        order: 2;
+      }
+      h2 {
+        font-size: 28px;
+        font-weight: 600;
+        color: $dark;
+        margin: 0 0 15px;
+        @include lg {
+          font-size: 22px;
+        }
+        span {
+          color: $red;
+        }
+      }
+      p {
+        margin: 0 0 15px;
+      }
+      .list {
+        list-style: none;
+        margin: 0;
+        padding: 0 0 10px;
+        li {
+          display: block;
+          margin-bottom: 5px;
+          font-size: 15px;
+          position: relative;
+          padding-left: 15px;
+          &::before {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 5px;
+            height: 5px;
+            content: "";
+            background-color: $textColor;
+            display: block;
+            @include border-radius(50%);
+          }
+        }
+      }
+      .download {
+        display: block;
+        width: 100%;
+        h4 {
+          position: relative;
+          font-size: 20px;
+          font-weight: 500;
+          color: $textColor;
+          margin: 0 0 10px;
+          &:after {
+            position: absolute;
+            top: 100%;
+            right: 100%;
+            content: "";
+            margin-top: -15px;
+            background-image: url(../assets/images/download-arrow.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 45px;
+            height: 52px;
+            margin-right: 10px;
+            display: block;
+            @include lg {
+              display: none;
+            }
+          }
+        }
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          li {
+            display: inline-block;
+            &:not(:last-child) {
+              margin-right: 15px;
+            }
+            a {
+              img {
+                max-width: 120px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

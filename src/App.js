@@ -1,27 +1,22 @@
-//import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import Header from "./components/layout/Header";
+import Home from "./pages/Home";
+import Footer from "./components/layout/Footer";
+import Register from "./pages/Register";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-  
     <div className="App">
-      <div className="row">
-      <div class="col-sm-3">
-          
-        </div>
-        <div class="col-sm-3">
-          <a href="https://apps.apple.com/us/app/ragibull/id1556833583">
-          <img src="/assets/images/download_app_store.png" width="250px"/>
-          </a>
-        </div>
-        <div class="col-sm-3">
-          <a href="https://play.google.com/store/apps/details?id=com.ragibull.app">
-            <img src="/assets/images/get-it-on-google-play.png" width="250px"/>
-          </a>
-        </div>
-        <div class="col-sm-3">
-        </div>
-      </div>      
+      <Router>
+        <Header />
+        <Switch>
+         
+          {/* <Route path="/register" component={Register}></Route> */}
+          <Route path="/" exact component={Home}></Route>
+        </Switch>
+        <Footer />
+      </Router>
     </div>
   );
 }

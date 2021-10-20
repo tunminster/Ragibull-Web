@@ -1,0 +1,88 @@
+$red: #E51B23;
+
+//Media Breakpoint
+$xl: 1024px;
+$lg: 991px;
+$md: 767px;
+$sm: 575px;
+$xs: 340px;
+
+@mixin xl {
+  @media (max-width: #{$xl}) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (max-width: #{$lg}) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: #{$md}) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (max-width: #{$sm}) {
+    @content;
+  }
+}
+@mixin xs {
+  @media (max-width: #{$xs}) {
+    @content;
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin box-shadow($boxShadow) {
+  -webkit-box-shadow: $boxShadow;
+     -moz-box-shadow: $boxShadow;
+          box-shadow: $boxShadow;
+}
+
+.App_header {
+  position: absolute;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  &--logo {
+    @include md {
+      text-align: center;
+      width: 100%;
+      flex-basis: 100% !important;
+      max-width: 100% !important;
+      padding-bottom: 10px;
+    }
+    img {
+      max-width: 80px;
+      cursor: pointer;
+    }
+  }
+  &--links {
+    text-align: right;
+    @include md {
+      text-align: center;
+      width: 100%;
+      flex-basis: 100% !important;
+      max-width: 100% !important;
+    }
+    .MuiButton-outlinedPrimary {
+      @include xs {
+        font-size: 12px;
+      }
+      &:not(:last-child) {
+        margin-right: 15px;
+        @include md {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
