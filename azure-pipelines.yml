@@ -8,7 +8,7 @@ trigger:
 
 variables:
   buildConfiguration: 'Release'
-  tag: '$(Build.SourceBranchName)'
+  tag: '$(Build.BuildNumber)'
   imageRepository: 'rw-app'
 
 stages:
@@ -39,7 +39,7 @@ stages:
     condition: and(succeeded(),eq(variables['build.sourceBranch'], 'refs/heads/master'))
     
     variables:
-        repository-image: 'pngoacr.azurecr.io/rw-app:$(Build.SourceBranchName)'
+        repository-image: 'pngoacr.azurecr.io/rw-app:$(Build.BuildNumber)'
         acr-secret-name: 'hn-prod-acr-secret'
         appsettings-secret-name: 'rw-appsettings-secret'
         host-url: 'www.ragibull.com'
