@@ -26,7 +26,7 @@ const Footer=()=> {
               </span>
             </div>
             <h4><span>Call us</span> to make an order!</h4>
-            <p>Don’t be shy, we don’t bite :)<br /> <a href="tel:+16548475225">+1 654 847 52 25</a></p>
+            <p><br /> <a href="tel:+16548475225">+1 415 854 95 24</a></p>
           </Grid>
           <Grid item sm={4} className="App_footer--box">
             <img src={appImg} className="App_footer-img" alt="App" />
