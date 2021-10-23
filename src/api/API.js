@@ -1,40 +1,71 @@
 import axios from "axios";
-import { param } from "jquery";
 const BASE_URL =
-  "https://api-gateway.ragibull.com/on-boarding/api/v1/on-boarding/driver?culture=en";
+  "https://api-gateway.ragibull.com/on-boarding/api/v1/on-boarding";
 export const AxiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 235000,
-  headers: {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-  },
+ 
 });
 
 export const API = {
-  async RegisterDriver(addressData, otherData) {
+  async RegisterDriver(driverDetails, docFile, subscriptionKey, id) {
     var formData = new FormData();
-    let bankAccount = {
-      accountNumber: otherData?.accountNumber,
-      routingNumber: otherData?.routingNumber,
-    };
-    formData.append("firstName", otherData?.firstName);
-    formData.append("lastName", otherData?.lastName);
-    formData.append("email", otherData?.email);
-    formData.append("jobTitle", otherData?.jobTitle);
-    formData.append("dateOfBirth", otherData?.dateOfBirth);
-    formData.append("address", addressData);
-    formData.append("bankAccount", bankAccount);
+
+    // console.log({ driverDetails, subscriptionKey, id });
+
+    formData.append(
+      "driverOnBoardingCreationContract",
+      JSON.stringify(driverDetails)
+    );
+
+    formData.append("identityFile", docFile);
 
     try {
-      let response = await AxiosInstance.post("/users/authenticate",formData)
-      if (response.status === 200) {
-        sessionStorage.setItem("access_token", response.data.data.accessToken);
-        sessionStorage.setItem(
-          "refresh_token",
-          response.data.data.refreshToken
-        );
-        return response;
+      let response = await AxiosInstance.post(
+        `/driver?culture=en&id=${id}`,
+        formData,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+          },
+        }
+      );
+      console.log('aa',response);
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      console.log(error.response);
+      return error.response;
+    }
+  },
+
+  async RegisterShopOwner(shopDetails, docFile, subscriptionKey, id) {
+    var formData = new FormData();
+
+    // console.log({ driverDetails, subscriptionKey, id });
+
+    formData.append(
+      "shopOwnerOnBoardingCreationContract",
+      JSON.stringify(shopDetails)
+    );
+
+    formData.append("identityFile", docFile);
+
+    try {
+      let response = await AxiosInstance.post(
+        `/shop-owner?culture=en&id=${id}`,
+        formData,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response.data
       }
     } catch (error) {
       return error.response;

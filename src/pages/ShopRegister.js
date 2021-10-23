@@ -13,7 +13,7 @@ import Header from "../components/layout/Header";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { LoadingButton } from "@mui/lab";
-import { useLocation, useParams } from "react-router";
+import { useLocation } from "react-router";
 
 const requiredValidationMsg = "This field is required.";
 
@@ -21,16 +21,13 @@ const schema = yup.object().shape({
   firstName: yup.string().required(requiredValidationMsg),
   lastName: yup.string().required(requiredValidationMsg),
   email: yup.string().required(requiredValidationMsg),
-  dateOfBirth: yup.string().required(requiredValidationMsg),
-
-  jobTitle: yup.string().required(requiredValidationMsg),
+  dob: yup.string().required(requiredValidationMsg),
+  phoneNumber: yup.string().required(requiredValidationMsg),
+  businessEntity: yup.string().required(requiredValidationMsg),
   identityDocumentType: yup.string().required(requiredValidationMsg),
   socialSecurityNumber: yup.string().required(requiredValidationMsg),
+  // file: yup.mixed().required(requiredValidationMsg),
   docFile: yup.string().required(requiredValidationMsg),
-
-  // docFile: yup
-  //       .mixed()
-  //       .required("A file is required"),
 
   address: yup.object().shape({
     addressLine1: yup.string().required(requiredValidationMsg),
@@ -51,14 +48,13 @@ const schemaOnlyForFile = yup.object().shape({
   docFile: yup.string().required(requiredValidationMsg),
 });
 
-const Register = () => {
+const ShopRegister = () => {
   const idFromUrl = useLocation().search.split("=")[1];
 
   const validate = () => {
     if (idFromUrl === undefined) {
       return yupResolver(schema);
-    }
-     else {
+    } else {
       return yupResolver(schemaOnlyForFile);
     }
   };
@@ -69,13 +65,15 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: validate(schema),
+    resolver: validate(),
   });
 
+  console.log({ idFromUrl });
+
   const [userDocFile, setUserDocFile] = useState(null);
+  const [fileErrorMsg, setErrorMsg] = useState(true);
 
   const [isSubmited, setSubmitStatus] = useState(false);
-
   const [isFormSaving, setFormSaving] = useState(false);
 
   const [userLocation, setUserLocation] = useState({
@@ -84,7 +82,6 @@ const Register = () => {
   });
 
   const [fileName, setFileName] = useState("");
-  const [fileErrorMsg, setErrorMsg] = useState(true);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -174,12 +171,12 @@ const Register = () => {
   };
 
   const onSubmit = async (data) => {
-    // console.log({ data, userDocFile });
+    console.log({ data, userDocFile });
     setFormSaving(true);
     let subscriptionKey = process.env.REACT_APP_SUBSCRIPTION_KEY;
 
     try {
-      let response = await API.RegisterDriver(
+      let response = await API.RegisterShopOwner(
         data,
         userDocFile,
         subscriptionKey,
@@ -192,17 +189,15 @@ const Register = () => {
         reset();
         setUserDocFile(null);
         setFileName("");
+
         setSubmitStatus(true);
       } else {
-      setFormSaving(false);
-
+        setFormSaving(false);
         alert("Something Went Wrong");
       }
-    } catch (error) {
-      console.error(error);
-      console.log(error);
-
+    } catch (e) {
       setFormSaving(false);
+      console.error(e);
       alert("Something Went Wrong");
     }
   };
@@ -226,7 +221,7 @@ const Register = () => {
                 <h2 className="Form_Title">Register Now</h2>
                 <p className="success">
                   {isSubmited
-                    ? "Driver onboarding successfully submitted. we will contact you shortly."
+                    ? "Shop owner onboarding successfully submitted. we will contact you shortly."
                     : ""}
                 </p>
 
@@ -261,14 +256,40 @@ const Register = () => {
                     </div>
                     <div className="form-group col-6">
                       <input
+                        type="number"
+                        placeholder="Phone Number"
+                        className="form-control"
+                        {...register("phoneNumber")}
+                      />
+                      <p className="errorMsg">{errors.phoneNumber?.message}</p>
+                    </div>
+                    <div className="form-group col-6">
+                      <input
                         type="date"
                         placeholder="Date of Birth"
                         className="form-control"
-                        {...register("dateOfBirth")}
+                        {...register("dob")}
                       />
-                      <p className="errorMsg">{errors.dateOfBirth?.message}</p>
+                      <p className="errorMsg">{errors.dob?.message}</p>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-6">
+                      <select
+                        className="form-control custom-select"
+                        {...register("businessEntity")}
+                        required
+                      >
+                        <option disabled>Select Business Entry</option>
+
+                        <option value="1">Individual</option>
+                        <option value="2">Company</option>
+                        <option value="3">NonProfitOrganization</option>
+                      </select>
+
+                      <p className="errorMsg">
+                        {errors.businessEntity?.message}
+                      </p>
+                    </div>
+                    {/* <div className="form-group">
                       <input
                         type="text"
                         placeholder="Job Title"
@@ -276,7 +297,7 @@ const Register = () => {
                         {...register("jobTitle")}
                       />
                       <p className="errorMsg">{errors.jobTitle?.message}</p>
-                    </div>
+                    </div> */}
 
                     <div className="form-group withicon">
                       <div className="over">
@@ -333,6 +354,12 @@ const Register = () => {
                         <option disabled>Select Country</option>
                         <option value="United States">United States</option>
                       </select>
+                      {/* <input
+                        type="text"
+                        placeholder="Country"
+                        className="form-control"
+                        {...register("address.country")}
+                      /> */}
                       <p className="errorMsg">
                         {errors.address?.country?.message}
                       </p>
@@ -380,7 +407,11 @@ const Register = () => {
                     </div>
                     <div className="form-group col-8">
                       <label className="form-control">
-                        <input type="file" onChange={(e) => onFileChange(e)} />
+                        <input
+                          type="file"
+                          onChange={(e) => onFileChange(e)}
+                          // {...register("file")}
+                        />
                         <span>
                           {fileName !== "" ? fileName : "Select Document"}
                         </span>
@@ -390,7 +421,6 @@ const Register = () => {
                         {fileErrorMsg && errors.docFile?.message}
                       </p>
                     </div>
-
                     <div className="form-group col-6">
                       <input
                         type="text"
@@ -431,7 +461,6 @@ const Register = () => {
                     >
                       Submit
                     </Button> */}
-
                       {!isFormSaving ? (
                         <input
                           type="submit"
@@ -461,4 +490,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ShopRegister;
