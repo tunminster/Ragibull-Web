@@ -6,12 +6,16 @@ import Register from "./pages/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ShopRegister from "./pages/ShopRegister";
 import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import Support from "./pages/Support";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
+        <Route path="/support" component={Support}></Route>
+        <Route path="/privacy" component={Privacy}></Route>
         <Route path="/terms" component={Terms}></Route>
           <Route path="/shop-owner-onboarding" component={ShopRegister}></Route>
 0          <Route path="/driver-onboarding" component={Register}></Route>
