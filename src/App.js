@@ -8,8 +8,10 @@ import ShopRegister from "./pages/ShopRegister";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import Support from "./pages/Support";
+import ReactGA from "react-ga";
 
 function App() {
+  ReactGA.initialize('G-4S7EBSPZLR');
   return (
     <div className="App">
       <Router>
