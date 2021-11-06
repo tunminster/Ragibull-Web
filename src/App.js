@@ -11,7 +11,7 @@ import Support from "./pages/Support";
 import ReactGA from "react-ga";
 
 function App() {
-  ReactGA.initialize('G-4S7EBSPZLR');
+  ReactGA.initialize('292521865');
   return (
     <div className="App">
       <Router>
