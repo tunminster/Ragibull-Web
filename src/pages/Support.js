@@ -36,9 +36,8 @@ return (
 
                 <div className="row">
                     <div className="form-group col-12">
-                        <p>Effective: January 01, 2021</p>
-                        <p>Please read the terms and conditions carefully. The terms and conditions a legal agreement between you and Ragibull LLC.</p>
-                         
+                        
+     
                     </div>
                 </div>
                
@@ -52,8 +51,42 @@ return (
         <div className="container">
             <Grid container spacing={3} alignItems="left">
                 <Grid item sm={12} className="box">
-                    <p><b>1. Acceptance of this Agreement</b></p>
-                    <p>Ragibull provides an online marketplace connection, using web-based technology that connects you and other consumers, restaurants and/or other businesses and independent delivery contractors (“Contractors”).  Ragibull’s software permits consumers to place orders for food and/or other goods from various restaurants and businesses, either for delivery or pickup (the “Software”). Once a delivery order is made, the Software notifies Contractors that a delivery opportunity is available and the Software facilitates completion of the delivery to the consumer. Once a pickup order is made, the Software communicates with the customer regarding the availability of the order for pickup. Ragibull is not a restaurant, delivery service, or food preparation business.</p>
+                    <p><b>My order never arrived</b></p>
+                    <p>If the order is complete in the app. but you have not received the order. Please call our support phone number or send email:
+                        <ol>
+                          <li>Tel: (415) 854-9524</li>
+                          <li>Email: contact@ragibull.com</li>
+                        </ol>
+                    </p>
+
+                    <p><b>I receeived someone else's order</b></p>
+                    <p>If you received someone else's order and were delivered the wrong items, please let us 
+                      know by this: 
+                      <ol>
+                          <li>Tel: (415) 854-9524</li>
+                          <li>Email: contact@ragibull.com</li>
+                        </ol>
+                    </p>
+
+                    <p><b>Change delivery address</b></p>
+                    <p>If you weant to change delivery address. You need to login to the app. 
+                      Go to my profile secion, update delivery address.
+                    </p>
+
+                    <p><b>My order is taking longer than expected</b></p>
+                    <p>Restaurant owner and delivery partner do their best to deliver the delivery item 
+                      on time. But, external unexpected factors can cause delay. EG: if the restaurant 
+                      is too busy than normal, you placeed a large order or your delivey path is in busy traffic or bad weather conditions.
+                    </p>
+
+                    <p><b>Your order is missing</b></p>
+                    <p>If you are a Restaurant owner, if you are not receiving any orders which should be in the app. In this case, 
+                      Please contact us:
+                      <ol>
+                          <li>Tel: (415) 854-9524</li>
+                          <li>Email: contact@ragibull.com</li>
+                        </ol>
+                    </p>
                 </Grid>
             </Grid>
             
