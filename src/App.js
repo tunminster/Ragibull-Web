@@ -8,6 +8,7 @@ import ShopRegister from "./pages/ShopRegister";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import Support from "./pages/Support";
+import Contact from "./pages/Contact";
 import ReactGA from "react-ga";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Router>
         <Switch>
         <Route path="/support" component={Support}></Route>
+        <Route path="/contact" component={Contact}></Route>
         <Route path="/privacy" component={Privacy}></Route>
         <Route path="/terms" component={Terms}></Route>
           <Route path="/shop-owner-onboarding" component={ShopRegister}></Route>
