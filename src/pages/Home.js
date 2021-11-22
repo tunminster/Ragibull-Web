@@ -189,7 +189,7 @@ const Home = () => {
                     <ul>
                       <li>
                         <a
-                          href="https://apps.apple.com/us/app/ragibull/id1556833583"
+                          href="https://apps.apple.com/us/app/ragibull-shop/id1583002227"
                           target="_blank"
                         >
                           <img src={appStore} alt="App Store" />
@@ -197,7 +197,7 @@ const Home = () => {
                       </li>
                       <li>
                         <a
-                          href="https://play.google.com/store/apps/details?id=com.ragibull.app"
+                          href="https://play.google.com/store/apps/details?id=com.ragibull.us.shop"
                           target="_blank"
                         >
                           <img src={playStore} alt="Play Store" />
