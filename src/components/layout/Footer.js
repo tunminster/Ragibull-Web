@@ -44,7 +44,11 @@ const Footer=()=> {
         <div className="container">
           <Grid container alignItems="center">
             <Grid item sm={6} className="App_footer_copyright--left">
-              <p>Copyright 2021 ©. All Rights Reserved</p>
+              <ul>
+                <li><a href="/terms">Terms of Service</a></li>
+                <li><a href="/privacy">Privacy</a></li>
+              </ul>
+              
             </Grid>
             <Grid item sm={6} className="App_footer_copyright--right">
               <ul>
@@ -65,6 +69,7 @@ const Footer=()=> {
                   </a>
                 </li>
               </ul>
+              <p>Copyright 2021 ©. All Rights Reserved</p>
             </Grid>
           </Grid>
         </div>
