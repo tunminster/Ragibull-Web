@@ -23,7 +23,6 @@ return (
         {/* Banner Section */}
         <div className="Banner_Inner">
           <div className="container">
-            <h1 className="Banner_Inner_Title">Privacy</h1>
           </div>
         </div>
 
@@ -32,7 +31,6 @@ return (
           <div className="container">
             <Grid container spacing={3} alignItems="center">
               <Grid item sm={12} className="box">
-                <h2 className="Form_Title">Privacy</h2>
 
                 <div className="row">
                     <div className="form-group col-12">
