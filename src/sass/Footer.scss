@@ -160,7 +160,7 @@ $xs: 340px;
         margin: 0;
         list-style: none;
         display: flex;
-        align-items: center;
+        align-items: left;
         justify-content: flex-end;
         @include md {
           justify-content: center;

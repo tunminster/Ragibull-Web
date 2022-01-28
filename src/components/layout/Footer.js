@@ -48,7 +48,7 @@ const Footer=()=> {
                 <li><a href="/terms">Terms of Service</a></li>
                 <li><a href="/privacy">Privacy</a></li>
               </ul>
-              
+              <p>Copyright 2022 ©. All Rights Reserved</p>
             </Grid>
             <Grid item sm={6} className="App_footer_copyright--right">
               <ul>
@@ -69,7 +69,7 @@ const Footer=()=> {
                   </a>
                 </li>
               </ul>
-              <p>Copyright 2022 ©. All Rights Reserved</p>
+              
             </Grid>
           </Grid>
         </div>
