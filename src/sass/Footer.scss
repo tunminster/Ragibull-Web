@@ -163,7 +163,7 @@ $xs: 340px;
         align-items: left;
         justify-content: flex-end;
         @include md {
-          justify-content: center;
+          justify-content: left;
         }
         li {
           display: inline-block;
