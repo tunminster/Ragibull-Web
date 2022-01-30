@@ -88,6 +88,6 @@ import { useLocation } from "react-router";
       </Grid>
     </>
   );
-};
+
 
 export default ShopRegister;
