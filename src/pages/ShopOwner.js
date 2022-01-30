@@ -31,7 +31,7 @@ const ShopOwner = () => {
         {/* Form Section */}
         <div className="Form">
           <div className="container">
-            <Grid container spacing={3} alignItems="center">
+            <Grid container spacing={3} alignItems="left">
               <Grid item sm={12} className="box">
                 <h2 className="Form_Title">Because your customers can't wait, call in Ragibull</h2>
                 <p>Make it easy for people to find and buy from your restaurant with Ragibull. With our app's convenient order management system, as well as fast but careful riders, customers would be able to enjoy more of your delightful food offerings conveniently. Register with us today to discover how the Ragibull app can serve as your online delivery platform.</p>
@@ -67,14 +67,13 @@ const ShopOwner = () => {
                 </p>
 
                 <h3>How Do I Register with Ragibull?</h3>
-                <p>Start connecting with more customers now by joining the Ragibull community! To become a Ragibull shop owner:</p>
-                <ol>
-                    <li>
-                     Download the Ragibull app from the App Store or Google Play.
-                    </li>
-                    <li>After installing the app, wait for our welcome e-mail. We’ll walk you through the use and operation of Ragibull app’s features for restaurant owners. Our sales team will also be ready to assist you should you reach out to us for further information or support.</li>
-                    <li>Once your onboarding is complete, get ready to see those orders coming!</li>
-                </ol>
+                <p>Start connecting with more customers now by joining the Ragibull community! To become a Ragibull shop owner:<br />
+                1. Download the Ragibull app from the App Store or Google Play. <br />
+                2. After installing the app, wait for our welcome e-mail. We’ll walk you through the use and operation of Ragibull app’s features for restaurant owners. Our sales team will also be ready to assist you should you reach out to us for further information or support.<br />
+                3. Once your onboarding is complete, get ready to see those orders coming!
+
+                </p>
+                
                 <h4>Got some questions?</h4>
                 <p>We'd love to hear from you! You can call us at (415) 854-9524 or write us at <a href="mailto:contact@ragibull.com">contact@ragibull.com</a></p>
                           
