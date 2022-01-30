@@ -68,6 +68,7 @@ metadata:
 spec:
   tls:
   - hosts:
+    - ragibull.com
     - www.ragibull.com
     secretName: rw-ingress-tls
   rules:
