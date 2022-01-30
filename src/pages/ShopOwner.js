@@ -16,7 +16,7 @@ import { LoadingButton } from "@mui/lab";
 import { useLocation } from "react-router";
 
 
-
+const ShopOwner = () => {
   return (
     <>
       <Header customClass="InnerHead" />
@@ -88,6 +88,7 @@ import { useLocation } from "react-router";
       </Grid>
     </>
   );
+};
 
 
-export default ShopRegister;
+export default ShopOwner;
