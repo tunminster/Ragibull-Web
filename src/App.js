@@ -9,6 +9,7 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import Support from "./pages/Support";
 import Contact from "./pages/Contact";
+import ShopOwner from "./pages/ShopOwner";
 import ReactGA from "react-ga";
 
 function App() {
@@ -21,9 +22,10 @@ function App() {
         <Route path="/contact" component={Contact}></Route>
         <Route path="/privacy" component={Privacy}></Route>
         <Route path="/terms" component={Terms}></Route>
-          <Route path="/shop-owner-onboarding" component={ShopRegister}></Route>
-0          <Route path="/driver-onboarding" component={Register}></Route>
-          <Route path="/" exact component={Home}></Route>
+        <Route path="/shop-owner-onboarding" component={ShopRegister}></Route>
+0       <Route path="/driver-onboarding" component={Register}></Route>
+        <Route path="/shop-owner" component={ShopOwner}></Route>
+        <Route path="/" exact component={Home}></Route>
         </Switch>
         <Footer />
       </Router>

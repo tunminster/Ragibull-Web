@@ -21,7 +21,7 @@ const Header = ({customClass}) => {
                 Ragibull Driver
               </Button>
             </Link>
-            <Link to="/shop-owner-onboarding">
+            <Link to="/shop-owner">
               <Button variant="outlined" color="primary">
                 Ragibull Shop
               </Button>
