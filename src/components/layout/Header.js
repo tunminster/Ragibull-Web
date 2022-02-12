@@ -16,7 +16,7 @@ const Header = ({customClass}) => {
             </Link>
           </Grid>
           <Grid item sm={6} className="App_header--links">
-            <Link to="/driver-onboarding" style={{ marginRight: 15 }}>
+            <Link to="/delivery-partner" style={{ marginRight: 15 }}>
               <Button variant="outlined" color="primary">
                 Ragibull Driver
               </Button>

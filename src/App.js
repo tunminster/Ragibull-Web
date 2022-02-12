@@ -10,6 +10,7 @@ import Privacy from "./pages/Privacy";
 import Support from "./pages/Support";
 import Contact from "./pages/Contact";
 import ShopOwner from "./pages/ShopOwner";
+import DeliveryPartner from "./pages/DeliveryPartner";
 import ReactGA from "react-ga";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/shop-owner-onboarding" component={ShopRegister}></Route>
 0       <Route path="/driver-onboarding" component={Register}></Route>
         <Route path="/shop-owner" component={ShopOwner}></Route>
+        <Route path="/delivery-partner" component={DeliveryPartner}></Route>
         <Route path="/" exact component={Home}></Route>
         </Switch>
         <Footer />
