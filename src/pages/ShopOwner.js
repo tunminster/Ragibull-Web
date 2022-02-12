@@ -29,7 +29,6 @@ const ShopOwner = () => {
         </div>
 
         {/* Form Section */}
-        <div className="Form">
           <div className="container">
             <Grid container spacing={3} alignItems="left">
               <Grid item sm={12} className="box">
@@ -81,7 +80,6 @@ const ShopOwner = () => {
               
             </Grid>
           </div>
-        </div>
       </Grid>
     </>
   );
