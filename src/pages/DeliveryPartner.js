@@ -26,8 +26,6 @@ const DeliveryPartner = () => {
           </div>
         </div>
 
-        {/* Form Section */}
-        <div className="Form">
           <div className="container">
             <Grid container spacing={3} alignItems="left">
               <Grid item sm={12} className="box">
@@ -91,7 +89,7 @@ const DeliveryPartner = () => {
               
             </Grid>
           </div>
-        </div>
+        
       </Grid>
     </>
     );
