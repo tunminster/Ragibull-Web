@@ -32,6 +32,7 @@ const ShopOwner = () => {
           <div className="container">
             <Grid container spacing={3} alignItems="left">
               <Grid item sm={12} className="box">
+                <br /><br />
                 <h2 className="Form_Title">Because your customers can't wait, call in Ragibull</h2>
                 <p>Make it easy for people to find and buy from your restaurant with Ragibull. With our app's convenient order management system, as well as fast but careful riders, customers would be able to enjoy more of your delightful food offerings conveniently. Register with us today to discover how the Ragibull app can serve as your online delivery platform.</p>
 
@@ -74,7 +75,10 @@ const ShopOwner = () => {
                 </p>
                 
                 <h4>Got some questions?</h4>
-                <p>We'd love to hear from you! You can call us at (415) 854-9524 or write us at <a href="mailto:contact@ragibull.com">contact@ragibull.com</a></p>
+                <p>We'd love to hear from you! You can call us at (415) 854-9524 or write us at <a href="mailto:contact@ragibull.com">contact@ragibull.com</a>
+                <br />
+                <br />
+                </p>
                           
               </Grid>
               
