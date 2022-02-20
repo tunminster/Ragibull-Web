@@ -83,7 +83,9 @@ const DeliveryPartner = () => {
                 </ol>
                 
                 <h4>Got some questions?</h4>
-                <p>We'd love to hear from you! You can call us at (415) 854-9524 or write us at <a href="mailto:contact@ragibull.com">contact@ragibull.com</a></p>
+                <p>We'd love to hear from you! You can call us at (415) 854-9524 or write us at <a href="mailto:contact@ragibull.com">contact@ragibull.com</a>
+                <br /><br />
+                </p>
                           
               </Grid>
               
