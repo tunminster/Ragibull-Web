@@ -45,6 +45,7 @@ const Footer=()=> {
           <Grid container alignItems="center">
             <Grid item sm={6} className="App_footer_copyright--left">
               <ul>
+              <li><a href="https://help.ragibull.com">Get Help</a></li>
                 <li><a href="/terms">Terms of Service</a></li>
                 <li><a href="/privacy">Privacy</a></li>
               </ul>
