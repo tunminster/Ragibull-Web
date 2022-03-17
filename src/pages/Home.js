@@ -52,7 +52,7 @@ const Home = () => {
         <div className="SocialMedia">
           <ul>
             <li>
-              <a href="https://www.instagram.com/ragibull/" target="_blank">
+              <a href="https://www.instagram.com/ragibull01/" target="_blank">
                 <img src={InstagramIcon} alt="Instagram" />
               </a>
             </li>

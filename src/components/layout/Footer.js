@@ -55,7 +55,7 @@ const Footer=()=> {
               <ul>
                 <li>Connect With Us</li>
                 <li>
-                  <a href="https://www.instagram.com/ragibull/" target="_blank">
+                  <a href="https://www./ragibull/Ragibull01/" target="_blank">
                     <img src={InstagramIcon} alt="Instagram" />
                   </a>
                 </li>
