@@ -1,6 +1,7 @@
 import axios from "axios";
-const BASE_URL =
-  "https://api-gateway.ragibull.com/on-boarding/api/v1/on-boarding";
+import { EndPoints } from "./EndPoints";
+const BASE_URL_OLD = "https://api-gateway.ragibull.com/on-boarding/api/v1/on-boarding";
+const BASE_URL = "https://api-gateway.ragibull.com/webapp/api/v1/on-boarding"
 export const AxiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 235000,
@@ -68,6 +69,83 @@ export const API = {
         return response.data
       }
     } catch (error) {
+      return error.response;
+    }
+  },
+  async RequestOTP(userDetails, subscriptionKey) {
+    var formData = new FormData();
+    try {
+      let response = await AxiosInstance.post(
+        EndPoints.requestOtpForUser,
+        userDetails,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      console.log(error.response);
+      return error.response;
+    }
+  },
+  async VerifyOTP(userDetails, subscriptionKey) {
+  
+    try {
+      let response = await AxiosInstance.post(
+        EndPoints.verifyUserOtp,
+        userDetails,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      console.log(error.response);
+      return error.response;
+    }
+  },
+  async RegisterDriverAPI(driverDetails, driverImageFile, licenseFrontFile, licenseBackFile, subscriptionKey) {
+    var formData = new FormData();
+
+    // console.log({ driverDetails, subscriptionKey, id });
+
+    formData.append(
+      "driverCreationContract",
+      JSON.stringify(driverDetails)
+    );
+
+    formData.append("driverImage", driverImageFile);
+    formData.append("drivingLicenseBackImage", licenseBackFile);
+    formData.append("drivingLicenseFrontImage", licenseFrontFile);  
+    try {
+      let response = await AxiosInstance.post(
+        EndPoints.registerDriver,
+        formData,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+          },
+        }
+      );
+      console.log('aa', response);
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      console.log(error.response);
       return error.response;
     }
   },

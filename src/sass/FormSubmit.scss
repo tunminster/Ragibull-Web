@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+// Veriables
+$fontFamily: 'Montserrat', sans-serif;
+
+$red: #e51b23;
+$dark: #222;
+$textColor: #3c3c3c;
+$black: #000;
+$white: #ffffff;
+
+//Media Breakpoint
+$xl: 1024px;
+$lg: 991px;
+$md: 767px;
+$sm: 575px;
+$xs: 340px;
+
+@mixin xl {
+  @media (max-width: #{$xl}) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (max-width: #{$lg}) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: #{$md}) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (max-width: #{$sm}) {
+    @content;
+  }
+}
+@mixin xs {
+  @media (max-width: #{$xs}) {
+    @content;
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin box-shadow($boxShadow) {
+  -webkit-box-shadow: $boxShadow;
+  -moz-box-shadow: $boxShadow;
+  box-shadow: $boxShadow;
+}
+
+#main {
+  > div {
+    width: 100%;
+  }
+}
+
+.Thankyou {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: $white;
+  @include lg {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  &_Img {
+    @include md {
+      text-align: center;
+      width: 100%;
+      order: 1;
+    }
+    img {
+      display: inline-block;
+      @include md {
+        max-width: 280px;
+      }
+      @include sm {
+        max-height: 250px;
+      }
+    }
+  }
+  &_Text {
+    text-align: center;
+    @include md {
+      padding-top: 15px;
+      width: 100%;
+      order: 2;
+    }
+    h2 {
+      font-size: 28px;
+      font-weight: 600;
+      color: $dark;
+      margin: 0 0 15px;
+      @include lg {
+        font-size: 22px;
+      }
+      span {
+        color: $red;
+      }
+    }
+    p {
+      margin: 0 0 15px;
+    }
+    .list {
+      list-style: none;
+      margin: 0;
+      padding: 0 0 10px;
+      li {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 15px;
+        position: relative;
+        padding-left: 15px;
+        &::before {
+          position: absolute;
+          top: 10px;
+          left: 0;
+          width: 5px;
+          height: 5px;
+          content: "";
+          background-color: $textColor;
+          display: block;
+          @include border-radius(50%);
+        }
+      }
+    }
+    .download {
+      display: block;
+      width: 100%;
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          display: inline-block;
+          &:not(:last-child) {
+            margin-right: 15px;
+          }
+          a {
+            img {
+              max-width: 216px;
+              @include lg {
+                max-width: 140px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
