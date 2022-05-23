@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../sass/FormSubmit.scss";
+import "../sass/DeliveryPartnerFormSubmit.scss";
 import { Grid, Typography, Link } from "@mui/material";
 import BannerImg from "../assets/images/banner-form.png";
 import FormHeader from "../components/layout/FormHeader";
@@ -7,7 +7,7 @@ import ShopImg from "../assets/images/app-img.png";
 import appStore from "../assets/images/app-store.png";
 import playStore from "../assets/images/play-store.png";
 
-const FormSubmit = () => {
+const DeliveryPartnerFormSubmit = () => {
 
   return (
     <>
@@ -72,4 +72,4 @@ const FormSubmit = () => {
   );
 };
 
-export default FormSubmit;
+export default DeliveryPartnerFormSubmit;

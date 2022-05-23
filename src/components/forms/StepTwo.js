@@ -1,5 +1,5 @@
 import React from "react";
-import "../../sass/Form.scss";
+import "../../sass/DeliveryPartnerForm.scss";
 
 const StepTwo = (props) => {
   return (

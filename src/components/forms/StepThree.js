@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Button } from "@mui/material";
-import "../../sass/Form.scss";
+import "../../sass/DeliveryPartnerForm.scss";
 import { usePlacesWidget } from "react-google-autocomplete";
 
 const StepThree = (props) => {

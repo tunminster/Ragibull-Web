@@ -57,14 +57,15 @@ const Faq = () => {
         onChange={handleChange("panel1")}
       >
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>How does delivering with Ragibull work?</Typography>
+          <Typography>When do Delivery partner get paid?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+          Weekly Direct Deposit
+
+Ragibull delivery partner get paid on a weekly basis for all deliveries completed between Monday - Sunday of the previous week.
+
+For this, delivery partner needs to complete the delivery partner on-boarding form.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -73,14 +74,13 @@ const Faq = () => {
         onChange={handleChange("panel2")}
       >
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>How does delivering with Ragibull work?</Typography>
+          <Typography>How does Ragibull Partner works?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+          Ragibull is an online marketplace platform. Our smartphone app connects delivery partners.
+
+In cities where Ragibull operates, use ragibull driver app to request 
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -89,14 +89,13 @@ const Faq = () => {
         onChange={handleChange("panel3")}
       >
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography>How does delivering with Ragibull work?</Typography>
+          <Typography>How do I create delivery partner account?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+          Creating a ragibull delivery partner account requires a valid email address and phone number. You will also need to create a password  and agree to terms and conditions and our privacy notice.
+
+Fill in you full name, phone number. Once you complete, we send an email to verify your email.
           </Typography>
         </AccordionDetails>
       </Accordion>

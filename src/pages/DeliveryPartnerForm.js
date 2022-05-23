@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../sass/Form.scss";
+import "../sass/DeliveryPartnerForm.scss";
 import { Button, Grid, Typography, Link } from "@mui/material";
 import BannerImg from "../assets/images/banner-form.png";
 import FormHeader from "../components/layout/FormHeader";
@@ -19,7 +19,7 @@ import { useHistory } from "react-router-dom";
 import { API } from "../api/API";
 import { LoadingButton } from "@mui/lab";
 
-const Form = () => {
+const DeliveryPartnerForm = () => {
 
   const history = useHistory();
 
@@ -27,38 +27,26 @@ const Form = () => {
     {
       id: 1,
       img: deliveryIcon1,
-      title: 'Earn extra money for your goals',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,`,
+      title: 'Earn extra income',
+      text: `Every Ragibull driver receives a base pay of $2 to $10+ per order. The exact amount depends on the estimated time, distance, and desirability of the order. `,
     },
     {
       id: 2,
       img: deliveryIcon2,
-      title: 'Choose your own hours',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,`,
+      title: 'Want flexiable working hours',
+      text: `Have complete control over your schedule. Choose the hours you’d want to dedicate to deliveries and take breaks whenever you need to.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,`,
     },
     {
       id: 3,
       img: deliveryIcon3,
-      title: 'Freedom to dash anywhere',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,`,
+      title: 'You choose where to work',
+      text: `Have complete control over your work place too. Choose or update area that you want to work from the app`,
     },
     {
       id: 4,
-      img: deliveryIcon4,
-      title: 'Easy to get started',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,`,
-    },
-    {
-      id: 5,
-      img: deliveryIcon5,
-      title: 'Easy to get started',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,`,
-    },
-    {
-      id: 6,
       img: deliveryIcon6,
       title: `Know how much you'll make`,
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,`,
+      text: `We transfer your earning weekly. You can also choose to get paid faster. Cash out in the app daily`,
     },
   ]
   const [stepForm, setStepForm] = useState(1);
@@ -248,7 +236,7 @@ const Form = () => {
         console.log(response);
         setApiErrors([...response?.data.errors])
       } else {
-        history.push('/form-submit');
+        history.push('/delivery-partner-form-submit');
       }
     } catch (error) {
       console.error(error);
@@ -370,4 +358,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default DeliveryPartnerForm;

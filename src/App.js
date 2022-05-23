@@ -12,8 +12,8 @@ import Contact from "./pages/Contact";
 import ShopOwner from "./pages/ShopOwner";
 import DeliveryPartner from "./pages/DeliveryPartner";
 import ReactGA from "react-ga";
-import Form from "./pages/Form";
-import FormSubmit from "./pages/FormSubmit";
+import DeliveryPartnerForm from "./pages/DeliveryPartnerForm";
+import DeliveryPartnerFormSubmit from "./pages/DeliveryPartnerFormSubmit";
 import { Redirect } from "react-router-dom";
 
 function App() {
@@ -30,9 +30,9 @@ function App() {
 0       <Route path="/driver-onboarding" component={Register}></Route>
         <Route path="/shop-owner" component={ShopOwner}></Route>
         <Route path="/delivery-partner" component={DeliveryPartner}></Route>
-        <Route path="/" exact component={Home} render={() => <Redirect to="/form" />} ></Route>
-        <Route exact path="/form" component={Form}></Route>
-        <Route exact path="/form-submit" component={FormSubmit}></Route>
+        <Route path="/" exact component={Home} render={() => <Redirect to="/delivery-partner-form" />} ></Route>
+        <Route exact path="/delivery-partner-form" component={DeliveryPartnerForm}></Route>
+        <Route exact path="/delivery-partner-form-submit" component={DeliveryPartnerFormSubmit}></Route>
         </Switch>
         <Footer />
       </Router>

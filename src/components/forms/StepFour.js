@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import CalendarIcon from "../../assets/images/calendar.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import "../../sass/Form.scss";
+import "../../sass/DeliveryPartnerForm.scss";
 
 const StepFour = (props) => {
 
