@@ -288,10 +288,13 @@ const Form = () => {
         <div className="About">
           <div className="container">
             <h2 className="About_Title">
-              <i>What is</i> Ragibull
+              <i>Why partner with </i> Ragibull
             </h2>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+            Achieve your financial goals faster by using your free time to augment your income. Be a Ragibull Delivery Partner and earn extra money while helping people get products they need.
+            </p>
+            <p>
+            At Ragibull, we ensure customer satisfaction by delivering their lunch, dinner, snacks, or grocery items on time with great professional excellence. As a Ragibull driver, you can become our partner in providing excellent service to our customers.
             </p>
           </div>
         </div>
