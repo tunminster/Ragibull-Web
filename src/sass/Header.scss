@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+// Veriables
+$fontFamily: 'Montserrat', sans-serif;
+
 $red: #E51B23;
 $white: #fff;
 
@@ -93,6 +98,51 @@ $xs: 340px;
     .App_header--links {
       .MuiButton-outlinedPrimary {
         color: $white;
+      }
+    }
+  }
+  &--bgFill {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: $white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    @include md {
+      background-color: transparent;
+      box-shadow: none;
+    }
+    .btn-primary {
+      padding-left: 30px;
+      padding-right: 30px;
+      font-size: 15px;
+      font-family: $fontFamily;
+      font-weight: 700;
+      background-color: #E51B23;
+      @include border-radius(30px);
+      &:hover,
+      &:focus {
+        background-color: #E51B23;
+      }
+    }
+    .btn-text {
+      font-size: 15px;
+      font-family: $fontFamily;
+      font-weight: 700;
+      color: #222222;
+      background-color: transparent;
+    }
+    &--logo {
+      @include md {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        flex-basis: 100% !important;
+        max-width: 100% !important;
+        padding-bottom: 10px;
+      }
+      img {
+        cursor: pointer;
+        display: block;
       }
     }
   }
