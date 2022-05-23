@@ -13,6 +13,7 @@ import InstagramIcon from "../assets/images/social-icn1.png";
 import TwitterIcon from "../assets/images/social-icn2.png";
 import FacebookIcon from "../assets/images/social-icn3.png";
 import Header from "../components/layout/Header";
+import bannerBg from '../assets/images/banner-bg.jpg'
 
 const Home = () => {
   const Services = [
@@ -70,7 +71,7 @@ const Home = () => {
         </div>
 
         {/* Banner Section */}
-        <div className="Banner">
+        <div className="Banner Banner__home">
           <div className="container">
             <h1 className="Banner_Title">
               Order your

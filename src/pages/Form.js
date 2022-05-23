@@ -272,7 +272,7 @@ const Form = () => {
       <Grid container id="main">
 
         {/* Banner Section */}
-        <div className="Banner">
+        <div className="Banner Banner__form">
           <div className="container">
             <h1 className="Banner_Title">
               Make money on your<br /> time and on your<br /> terms
@@ -329,7 +329,7 @@ const Form = () => {
                     Submit
                   </Button>
                 }
-                {isLoading && <LoadingButton
+                {isLoading && <LoadingButton 
                   loading
                   className="custom-loader"/>}
 

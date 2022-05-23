@@ -68,10 +68,12 @@ $xs: 340px;
   display: flex;
   align-items: center;
   background-color: #f4f4f4;
-  background-image: url(../assets/images/banner-form-bg.png);
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
+  &__form {
+    background-image: url(../assets/images/banner-form-bg.png);
+  }
   @include lg {
     background-size: contain;
     min-height: 350px;
