@@ -13,7 +13,8 @@ RUN npm install react-scripts@3.4.1 -g --silent
 
 # add app
 COPY . ./
-RUN apk add --update python3 make g++ && rm -rf /var/cache/apk/*
+RUN apk add --update python make g++\
+   && rm -rf /var/cache/apk/*
 RUN npm install
 RUN npm run build
 
