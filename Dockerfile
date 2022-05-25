@@ -10,8 +10,9 @@ COPY package.json ./
 COPY package-lock.json ./
 #RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
-RUN npm install -g npm@8.10.0
-
+RUN npm install bcryptjs --save
+RUN apk add --update python make g++\
+   && rm -rf /var/cache/apk/*
 # add app
 COPY . ./
 
