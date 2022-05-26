@@ -1,6 +1,6 @@
 #pull official base image
 FROM node:18.0.0-alpine as build
-RUN apk add --no-cache python g++ make
+RUN apk add --no-cache python2 g++ make
 
 WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
@@ -16,9 +16,9 @@ RUN npm install react-scripts@3.4.1 -g --silent
 COPY . ./
 
 RUN apk --no-cache --virtual build-dependencies add \
-        python \
-        make \
-        g++
+  python2 \
+  make \
+  g++
 
 RUN npm install
 RUN npm run build
