@@ -1,5 +1,6 @@
 #pull official base image
 FROM node:18.0.0-alpine as build
+RUN apk add --no-cache python g++ make
 
 WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
@@ -10,11 +11,14 @@ COPY package.json ./
 COPY package-lock.json ./
 #RUN npm ci --silent
 RUN npm install react-scripts@3.4.1 -g --silent
-RUN npm install bcryptjs --save
-RUN apk add --update python make g++\
-   && rm -rf /var/cache/apk/*
+
 # add app
 COPY . ./
+
+RUN apk --no-cache --virtual build-dependencies add \
+        python \
+        make \
+        g++
 
 RUN npm install
 RUN npm run build
