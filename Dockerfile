@@ -1,5 +1,6 @@
 #pull official base image
-FROM node:18.0.0-alpine as build
+FROM node:13.12.0-alpine as build
+
 RUN apk add --no-cache python2 g++ make
 
 WORKDIR /app
