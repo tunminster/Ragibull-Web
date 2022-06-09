@@ -24,6 +24,18 @@ const StepOne = (props) => {
         />
         {props?.hasError&&!props.formData?.fullName&&<p className="errorMsg">{"Please enter full name!"}</p>}
       </div>
+      {props.isShopOwner && <div className="form-group">
+        <label>Phone Number</label>
+        <input
+          type="text"
+          placeholder="Phone Number"
+          className="form-control"
+          inputMode="numeric"
+          onChange={(e) => props.onChangeValues("phone", e.target.value)}
+          defaultValue={props.formData?.phone}
+        />
+        {props?.hasError&&!props.formData?.fullName&&<p className="errorMsg">{"Please enter phone number!"}</p>}
+      </div>}
       <div className="form-group">
         <label>Email Address</label>
         <input
