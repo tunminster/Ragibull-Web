@@ -28,7 +28,7 @@ const Footer=()=> {
             <h4><span>Call us</span> to make an order!</h4>
             <p>
              <br />Email:<a href="email:contact@ragibull.com">contact@ragibull.com</a>
-              <br />Contact number: <a href="tel:+16548475225">+1 415 854 95 24</a></p>
+              <br />Contact number: <a href="tel:+16548475225">+1 415 662 0841</a></p>
           </Grid>
           <Grid item sm={4} className="App_footer--box">
             <img src={appImg} className="App_footer-img" alt="App" />
