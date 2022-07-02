@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../sass/FormShop.scss";
 import { Button, Grid, Typography, Link } from "@mui/material";
-import BannerImg from "../assets/images/banner-form.png";
 import FormHeader from "../components/layout/FormHeader";
 import deliveryIcon1 from "../assets/images/deliver-icon7.png";
 import deliveryIcon2 from "../assets/images/deliver-icon8.png";
@@ -10,9 +9,6 @@ import deliveryIcon4 from "../assets/images/deliver-icon10.png";
 import Faq from "../components/layout/Faq";
 import StepOne from "../components/forms/StepOne";
 import StepTwo from "../components/forms/StepTwo";
-import StepThree from "../components/forms/StepThree";
-import StepFour from "../components/forms/StepFour";
-import StepFive from "../components/forms/StepFive";
 import orderImg1 from "../assets/images/order-img1.jpg";
 import orderImg2 from "../assets/images/order-img2.jpg";
 import orderImg3 from "../assets/images/order-img3.jpg";
@@ -23,7 +19,7 @@ import { LoadingButton } from "@mui/lab";
 import StepThreeShop from "../components/forms/StepThreeShop";
 import StepFourShop from "../components/forms/StepFourShop";
 
-const FormShop = () => {
+const ShopOwnerForm = () => {
 
   const history = useHistory();
 
@@ -77,62 +73,142 @@ const FormShop = () => {
 
   const [stepForm, setStepForm] = useState(1);
   const [isLoading, setLoading] = useState(false);
-  const [driverImage, setDriverImage] = useState(null);
-  const [driverLicenseFront, setdriverLicenseFront] = useState(null)
-  const [driverLicenseBack, setdriverLicenseBack] = useState(null)
+  const [isOtpValid, setOtpValid] = useState(true);
+  const [shopImage, setShopImage] = useState(null);
+  const [selectedDays, setSelectedDays] = useState([]);
+  const [dayTimings, setDayTimings] = useState([]);
   const [registerData, setRegisterData] = useState({});
+  const [allStoreTypes, setStoreTypes] = useState([]);
   const [hasErrors, setHasError] = useState(false)
   const [apiErrors, setApiErrors] = useState([]);
   const onNextClick = (next = true) => {
-
     if (next) {
-        if (stepForm < 5) setStepForm(stepForm + 1);
+      if (stepForm === 1) {
+        requestForOtp();
+        setOtpValid(true);
+        getAllStoreTypes();
+      } else if (stepForm === 2) {
+        verifyUserOtp();
+      } else if (stepForm === 3) {
+        setOtpValid(true);
+        validateStep3();
+      } else if (stepForm === 4) {
+        validateStep4();
+      }
+      else {
+        if (stepForm < 4) setStepForm(stepForm + 1);
+      }
     } else {
       if (stepForm > 0) setStepForm(stepForm - 1);
     }
-
   };
-
   const onChangeValues = (fieldName, value) => {
-    let tempObj = { [fieldName]: value };
-    setRegisterData({
-      ...registerData,
-      ...tempObj
-    })
+    console.log(registerData);
+    if (fieldName === 'openTime' || 'closeTime') {
+      addTimeToDays(fieldName, value);
+    } else {
+      let tempObj = { [fieldName]: value };
+      setRegisterData({
+        ...registerData,
+        ...tempObj
+      })
+    }
   }
-  const onUpdateAddress = (addressData)=>{
-    console.log(addressData)
-    setRegisterData({
-      ...registerData,
-      ...addressData,
-    })
-  }
-  const setImages = (type, file)=>{
-    if(type==="driverImage"){
-      setDriverImage(file)
-      }else if(type==="backImage"){
-        setdriverLicenseBack(file)
-      }else if(type==="frontImage"){
-        setdriverLicenseFront(file)
+  const addTimeToDays = (fieldName, value) => {
+    let timeObj = '';
+    if (fieldName === 'openTime') {
+      timeObj = 'open'
+    } else {
+      timeObj = 'close'
+    }
+    var tempDayTimings = [...dayTimings]
+    for (var i = 0; i < tempDayTimings.length; i++) {
+      if (tempDayTimings[i][timeObj] === '') {
+        tempDayTimings[i][timeObj] = value;
       }
+    }
+    setDayTimings([...tempDayTimings])
+    setRegisterData({
+      ...registerData,
+      [fieldName]: value,
+    })
   }
-  const validateStep3 = ()=>{
+  const onUpdateAddress = (addressData) => {
+    setRegisterData((v) => {
+      return {
+        ...v,
+        latitude: addressData.latitude,
+        longitude: addressData.longitude,
+        addressLine1: addressData.addressLine1,
+        city: addressData.city,
+        country: addressData.country
+      };
+    })
+  }
+  // console.log(registerData);
+  const onDaysSelect = (daysArray) => {
+    if (selectedDays.length < daysArray.length) {
+      // Day is added
+      let tempDayTimings = [...dayTimings];
+      for (var i = 0; i < daysArray.length; i++) {
+        if (!selectedDays.includes(daysArray[i])) {
+          tempDayTimings.push({
+            dayOfWeek: daysArray[i],
+            open: '',
+            close: '',
+            timeZone: "PT"
+          });
+        } else {
+          console.log("includes" + daysArray[i]);
+        }
+      }
+      setDayTimings(tempDayTimings);
+      setSelectedDays(daysArray);
+      setRegisterData({
+        ...registerData,
+        openTime: '',
+        closeTime: '',
+      })
+    } else {
+      //Day is removed
+      let tempDayTimings = [...dayTimings];
+      let difference = selectedDays.filter(x => !daysArray.includes(x)); // calculates diff
+      for (let i = 0; i < difference?.length; i++) {
+        let index = tempDayTimings.findIndex(x => x.dayOfWeek === String(difference[i]));
+        if (index >= 0) {
+          console.log(tempDayTimings)
+          setDayTimings(tempDayTimings);
+          setSelectedDays(daysArray);
+        }
+
+      }
+    }
+  }
+  const setImages = (type, file) => {
+    setShopImage(file)
+  }
+  const validateStep3 = () => {
     if (!registerData?.addressLine1
-       || !registerData?.city
-       || !registerData?.country
-       || !registerData?.county
-       || !registerData?.password
-       || !registerData?.confirmPassword) {
-         setHasError(true);
-         return;
-       }else{
-        setHasError(false);
-        setStepForm(stepForm + 1);
-       }
+      || !registerData?.city
+      || !registerData?.country
+      || !registerData?.zipCode
+      || !registerData?.phoneNumber
+      || !registerData?.password
+      || !registerData?.confirmPassword
+      || !registerData?.businessName) {
+      setHasError(true);
+    } else {
+      setHasError(false);
+      setStepForm(stepForm + 1);
+    }
 
   }
-  const validateStep4 = ()=>{
-    history.push('/form-submit');
+  const validateStep4 = () => {
+    if (selectedDays.length === 0 || !registerData.openTime || !registerData.closeTime) {
+      setHasError(true)
+    } else {
+      onSubmit();
+    }
 
   }
   const checkEmailValid = (emailValue) => {
@@ -156,10 +232,10 @@ const FormShop = () => {
     setLoading(true)
     let requestObj = {
       "fullName": registerData.fullName,
-      "email": registerData.email
+      "emailAddress": registerData.email
     }
     try {
-      let response = await API.RequestOTP(
+      let response = await API.RequestOwnerOtpApi(
         requestObj,
         subscriptionKey,
       );
@@ -167,13 +243,13 @@ const FormShop = () => {
       if (response?.userEmailAddress) {
         setHasError(false)
         setStepForm(stepForm + 1);
-      }else{
-        alert("Something went wrong!")
+      } else {
+        alert("Opps. There is something wrong. Please try it again")
       }
     } catch (error) {
       console.error(error);
       console.log(error);
-      alert("Something went wrong!")
+      alert("Opps. There is something wrong. Please try it again")
     }
   };
 
@@ -190,58 +266,94 @@ const FormShop = () => {
       "code": registerData.code
     }
     try {
-      let response = await API.VerifyOTP(
+      let response = await API.VerifyOwnerOtpApi(
         requestObj,
         subscriptionKey,
       );
       setLoading(false)
-      if (response?.userEmailAddress) {
+      if (response?.status === "approved" && response?.valid) {
+        setOtpValid(true);
         setHasError(false)
         setStepForm(stepForm + 1);
+      } else {
+        setOtpValid(false);
+        setHasError(true);
       }
     } catch (error) {
       console.error(error);
       console.log(error);
+      alert("Opps. There is something wrong. Please try it again")
     }
   };
-  const onSubmit = async () => {
-    // console.log({ data, userDocFile });
-    setLoading(true);
-    var data = {...registerData,
-      emailAddress: registerData.email,
-	    radius: 20,
-      }
-      
+  const getAllStoreTypes = async () => {
     let subscriptionKey = process.env.REACT_APP_SUBSCRIPTION_KEY;
 
     try {
-      let response = await API.RegisterDriverAPI(
-        data,
-        driverImage,
-        driverLicenseFront,
-        driverLicenseBack,
+      let response = await API.GetStoreTypes(
         subscriptionKey,
+      );
+      if (response.status === 200) {
+        setStoreTypes([...response.data])
+      }else{
+        alert("Opps. There is something wrong. Please try it again")
+      }
+    } catch (error) {
+      console.error(error);
+      console.log(error);
+      alert("Opps. There is something wrong. Please try it again")
+    }
+  };
+  const onSubmit = async () => {
+    let daysOpen = [...dayTimings];
+
+    for (let i = 1; i < 8; i++) {
+      let indexItem = daysOpen.findIndex(x => x.dayOfWeek === String(i));
+      if (indexItem === -1) {
+        daysOpen.push({
+          dayOfWeek: String(i),
+          open: 'Closed',
+          close: 'Closed',
+          timeZone: "PT"
+        })
+      }
+    }
+    var data = {
+      ...registerData,
+      emailAddress: registerData.email,
+      storeOpeningHours: daysOpen,
+    }
+    setLoading(true);
+
+
+    let subscriptionKey = process.env.REACT_APP_SUBSCRIPTION_KEY;
+
+    try {
+      let response = await API.RegisterShopOwnerAPI(
+        data,
+        shopImage,
+        subscriptionKey
       );
       setLoading(false);
       if (response?.data?.errors) {
-        console.log(response);
-        setApiErrors([...response?.data.errors])
-      } else {
-        history.push('/form-submit');
+        setApiErrors([...response?.data?.errors])
+      } else if (response?.status === 200){
+        history.push('/shop-owner-form-submit');
+      }else{
+        alert("Opps. There is something wrong. Please try it again")
       }
     } catch (error) {
       console.error(error);
       console.log(error);
 
       setLoading(false);
-      alert("Something Went Wrong");
+      alert("Opps. There is something wrong. Please try it again")
     }
   };
-  const errorMessages = ()=>{
-    return apiErrors.map((error, index)=>{
-        return(
-          <p className="apiErrorMsg"  key={index}>• {error.message}</p>
-        );
+  const errorMessages = () => {
+    return apiErrors.map((error, index) => {
+      return (
+        <p className="apiErrorMsg" key={index}>• {error.message}</p>
+      );
     });
   }
   return (
@@ -254,7 +366,7 @@ const FormShop = () => {
         <div className="Banner Banner__formShop">
           <div className="container">
             <h1 className="Banner_Title">
-            A world of customers now within<br /> your reach
+              A world of customers now within<br /> your reach
             </h1>
           </div>
         </div>
@@ -276,10 +388,10 @@ const FormShop = () => {
             <p className="signUp__content">Please enter your information below in order to Register Your Shop</p>
             <div className="formSteps">
               <form action="#">
-                {stepForm === 1 && <StepOne onChangeValues={onChangeValues} formData={registerData} hasError={hasErrors} isShopOwner = {true}/>}
-                {stepForm === 2 && <StepTwo onChangeValues={onChangeValues}  formData={registerData} hasError={hasErrors}/>}
-                {stepForm === 3 && <StepThreeShop onChangeValues={onChangeValues} onUpdateAddress={onUpdateAddress} formData={registerData} hasError={hasErrors}/>}
-                {stepForm === 4 && <StepFourShop onChangeValues={onChangeValues} onUpdateAddress={onUpdateAddress} formData={registerData} hasError={hasErrors} />}
+                {stepForm === 1 && <StepOne onChangeValues={onChangeValues} formData={registerData} hasError={hasErrors} isShopOwner={true} />}
+                {stepForm === 2 && <StepTwo onChangeValues={onChangeValues} formData={registerData} hasError={hasErrors} isOtpValid={isOtpValid} />}
+                {stepForm === 3 && <StepThreeShop onChangeValues={onChangeValues} onAddressUpdate={onUpdateAddress} formData={registerData} hasError={hasErrors} setImages={setImages} />}
+                {stepForm === 4 && <StepFourShop onChangeValues={onChangeValues} onDaysSelect={onDaysSelect} formData={registerData} hasError={hasErrors} storeTypes={allStoreTypes} />}
               </form>
               <Grid container alignItems={'center'} justifyContent={'center'} className="cta">
                 {stepForm !== 1 &&
@@ -298,12 +410,12 @@ const FormShop = () => {
                     Submit
                   </Button>
                 }
-                {isLoading && <LoadingButton 
+                {isLoading && <LoadingButton
                   loading
-                  className="custom-loader"/>}
+                  className="custom-loader" />}
 
               </Grid>
-              {apiErrors&&<div>{errorMessages()}</div>}
+              {apiErrors && <div>{errorMessages()}</div>}
               <Typography className="login" compotent={'p'}>Already Have An Account? <Link to="/">Login</Link></Typography>
             </div>
           </div>
@@ -328,40 +440,40 @@ const FormShop = () => {
 
         {/* Order Taking Section */}
         <div className="Ordertaking">
-            <div className="container">
-                <h2 className="Ordertaking_Title">
-                    <i>How Does</i> Ragibull App <i>Make Order-Taking and Delivery Easy?</i>
-                </h2>
-                <div className="row">
-                    {orderData.map((item) => (
-                        <div className="Ordertaking__box" key={item.id}>
-                            <img src={item.img} alt={item.title} />
-                            <h4>{item.title}</h4>
-                            <p>{item.text}</p>
-                        </div>
-                    ))}
+          <div className="container">
+            <h2 className="Ordertaking_Title">
+              <i>How Does</i> Ragibull App <i>Make Order-Taking and Delivery Easy?</i>
+            </h2>
+            <div className="row">
+              {orderData.map((item) => (
+                <div className="Ordertaking__box" key={item.id}>
+                  <img src={item.img} alt={item.title} />
+                  <h4>{item.title}</h4>
+                  <p>{item.text}</p>
                 </div>
+              ))}
             </div>
+          </div>
         </div>
 
         {/* Register Section */}
         <div className="Register">
-            <div className="container">
-                <div className="row">
-                    <div className="Register__img">
-                        <img src={registerImg} alt={''} />
-                    </div>
-                    <div className="Register__text">
-                        <h2 className="Register_Title"><i>How Do I Register with</i> Ragibull?</h2>
-                        <p>Start connecting with more customers now by joining the Ragibull community! To become a Ragibull shop owner:</p>
-                        <ul>
-                            <li>Download the Ragibull app from the App Store or Google Play.</li>
-                            <li>After installing the app, wait for our welcome e-mail. We’ll walk you through the use and operation of Ragibull app’s features for restaurant owners. Our sales team will also be ready to assist you should you reach out to us for further information or support.</li>
-                            <li>Once your onboarding is complete, get ready to see those orders coming!</li>
-                        </ul>
-                    </div>
-                </div>
+          <div className="container">
+            <div className="row">
+              <div className="Register__img">
+                <img src={registerImg} alt={''} />
+              </div>
+              <div className="Register__text">
+                <h2 className="Register_Title"><i>How Do I Register with</i> Ragibull?</h2>
+                <p>Start connecting with more customers now by joining the Ragibull community! To become a Ragibull shop owner:</p>
+                <ul>
+                  <li>Download the Ragibull app from the App Store or Google Play.</li>
+                  <li>After installing the app, wait for our welcome e-mail. We’ll walk you through the use and operation of Ragibull app’s features for restaurant owners. Our sales team will also be ready to assist you should you reach out to us for further information or support.</li>
+                  <li>Once your onboarding is complete, get ready to see those orders coming!</li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
 
         {/* FAQ Section */}
@@ -378,4 +490,4 @@ const FormShop = () => {
   );
 };
 
-export default FormShop;
+export default ShopOwnerForm;

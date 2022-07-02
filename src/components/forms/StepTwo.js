@@ -10,10 +10,12 @@ const StepTwo = (props) => {
           type="text"
           className="form-control"
           onChange={(e) => props.onChangeValues("code", e.target.value)}
-          defaultValue={props.formData?.code}
+          value={props.formData?.code}
         />
-        {props?.hasError&& (!props.formData.code || props?.invalidOTP) &&
+        {props?.hasError&& (!props.formData.code) &&
          <p className="errorMsg">{"Please enter valid otp!"}</p>}
+         {props?.hasError&&!props?.isOtpValid&&
+         <p className="errorMsg">{"The code is not valid. Please enter the valid code."}</p>}
       </div>
     </div>
   );

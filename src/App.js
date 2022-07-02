@@ -10,12 +10,12 @@ import Privacy from "./pages/Privacy";
 import Support from "./pages/Support";
 import Contact from "./pages/Contact";
 import ShopOwner from "./pages/ShopOwner";
+import ShopOwnerForm from "./pages/ShopOwnerForm";
 import DeliveryPartner from "./pages/DeliveryPartner";
 import ReactGA from "react-ga";
 import DeliveryPartnerForm from "./pages/DeliveryPartnerForm";
 import DeliveryPartnerFormSubmit from "./pages/DeliveryPartnerFormSubmit";
 import { Redirect } from "react-router-dom";
-import FormShop from "./pages/FormShop";
 
 function App() {
   ReactGA.initialize('G-4S7EBSPZLR');
@@ -35,9 +35,8 @@ function App() {
         <Route exact path="/delivery-partner-form" component={DeliveryPartnerForm}></Route>
         <Route exact path="/delivery-partner-form-submit" component={DeliveryPartnerFormSubmit}></Route>
         <Route path="/" exact component={Home} render={() => <Redirect to="/form" />} ></Route>
-        {/* <Route exact path="/form" component={Form}></Route>
-        <Route exact path="/form-submit" component={FormSubmit}></Route>
-        <Route exact path="/form-shop" component={FormShop}></Route> */}
+        <Route exact path="/shop-owner-form-submit" component={DeliveryPartnerFormSubmit}></Route>
+        <Route exact path="/shop-owner-form" component={ShopOwnerForm}></Route> 
         </Switch>
         <Footer />
       </Router>

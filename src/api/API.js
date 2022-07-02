@@ -73,7 +73,6 @@ export const API = {
     }
   },
   async RequestOTP(userDetails, subscriptionKey) {
-    var formData = new FormData();
     try {
       let response = await AxiosInstance.post(
         EndPoints.requestOtpForUser,
@@ -91,6 +90,28 @@ export const API = {
       }
     } catch (error) {
       console.log(error.response);
+      return error.response;
+    }
+  },
+  async RequestOwnerOtpApi(userDetails, subscriptionKey) {
+    try {
+      let response = await AxiosInstance.post(
+        EndPoints.requestOwnerOtp,
+        userDetails,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      console.log(error.response);
+      //alert("Opps. There is something wrong. Please try it again")
       return error.response;
     }
   },
@@ -113,6 +134,29 @@ export const API = {
       }
     } catch (error) {
       console.log(error.response);
+      //alert("Opps. There is something wrong. Please try it again")
+      return error.response;
+    }
+  },
+  async VerifyOwnerOtpApi(userDetails, subscriptionKey) {
+  
+    try {
+      let response = await AxiosInstance.post(
+        EndPoints.verifyOwnerOtp,
+        userDetails,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      //alert("Opps. There is something wrong. Please try it again")
       return error.response;
     }
   },
@@ -146,6 +190,55 @@ export const API = {
       }
     } catch (error) {
       console.log(error.response);
+      return error.response;
+    }
+  },
+
+  async RegisterShopOwnerAPI(shopDetails, shopImageFile, subscriptionKey) {
+    var formData = new FormData();
+    formData.append(
+      "shopCreationContract",
+      JSON.stringify(shopDetails)
+    );
+
+    formData.append("shopImage", shopImageFile);
+    try {
+      let response = await AxiosInstance.post(
+        EndPoints.registerShopOwner,
+        formData,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response
+      }
+    } catch (error) {
+      console.log(error.response);
+      return error.response;
+    }
+  },
+  async GetStoreTypes(subscriptionKey) {
+  
+    try {
+      let response = await AxiosInstance.get(
+        EndPoints.getShopTypes,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response
+      }
+    } catch (error) {
+      console.log(error);
       return error.response;
     }
   },
