@@ -67,6 +67,15 @@ stages:
           - task: DockerInstaller@0
             inputs:
               dockerVersion: '17.09.0-ce'   
+          
+          - task: EnvTransform@0
+            inputs:
+              inputType: 'inline'
+              content: |
+                REACT_APP_SUBSCRIPTION_KEY=$(ragibull-web-api-subscription)
+                SKIP_PREFLIGHT_CHECK=true
+              outputFile: '$(System.DefaultWorkingDirectory)/.env'
+
           - task: Docker@2
             inputs:
               containerRegistry: 'hn-acr-connection'
@@ -89,13 +98,8 @@ stages:
               targetFiles: 'rw-deployment.yaml'
               escapeType: none    
 
-          - task: EnvTransform@0
-            inputs:
-              inputType: 'inline'
-              content: |
-                REACT_APP_SUBSCRIPTION_KEY=$(ragibull-web-api-subscription)
-                SKIP_PREFLIGHT_CHECK=true
-              outputFile: '$(Build.ArtifactStagingDirectory)/.env'
+          - script: 'cat $(Build.ArtifactStagingDirectory)/.env'
+            displayName: 'Cat env'
 
           - script: 'cat $(Build.ArtifactStagingDirectory)/devops/rw-deployment.yaml'
             displayName: 'Cat deploy'  
