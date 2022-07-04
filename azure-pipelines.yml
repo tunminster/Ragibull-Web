@@ -77,6 +77,13 @@ stages:
               targetFiles: 'rw-deployment.yaml'
               escapeType: none    
 
+          - task: EnvTransform@0
+            inputs:
+              inputType: 'inline'
+              content: |
+                REACT_APP_SUBSCRIPTION_KEY=$(ragibull-web-api-subscription)
+                SKIP_PREFLIGHT_CHECK=true
+
           - script: 'cat $(Build.ArtifactStagingDirectory)/devops/rw-deployment.yaml'
             displayName: 'Cat deploy'  
             

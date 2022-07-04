@@ -71,9 +71,6 @@ $xs: 340px;
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
-  &__form {
-    background-image: url(../assets/images/banner-form-bg.png);
-  }
   @include lg {
     background-size: contain;
     min-height: 350px;
@@ -89,6 +86,34 @@ $xs: 340px;
     padding-bottom: 0;
     background-image: none;
     text-align: center;
+  }
+  &__formShop {
+    position: relative;
+    background-image: url(../assets/images/banner-formshop.png);
+    background-size: cover !important;
+    @include md {
+      margin-top: 150px;
+      padding-top: 0;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+    }
+    @include sm {
+      padding-top: 0;
+    }
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      content: '';
+    }
+    .Banner_Title {
+      color: $white;
+      text-align: center;
+    }
   }
   &_Title {
     position: relative;
@@ -112,11 +137,8 @@ $xs: 340px;
     span {
       display: block;
       color: $red;
-
-     
     }
   }
-
   .form-control {
     width: 100%;
     height: 42px;
@@ -182,164 +204,7 @@ $xs: 340px;
   margin-top: 0;
   margin-bottom: 10px;
 }
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -10px;
-  margin-right: -10px;
-  .form-group {
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-    @include lg {
-      margin-bottom: 15px;
-    }
-    &:last-child {
-      margin-bottom: 0;
-    }
-    &.col-4 {
-      flex: 0 0 33.33%;
-      max-width: 33.33%;
-      @include lg {
-        flex: 0 0 50%;
-        max-width: 50%;
-      }
-      @include sm {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
-    }
-    &.col-6 {
-      flex: 0 0 50%;
-      max-width: 50%;
-      @include sm {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
-    }
-    &.col-8 {
-      flex: 0 0 66.66%;
-      max-width: 66.66%;
-      @include lg {
-        flex: 0 0 50%;
-        max-width: 50%;
-      }
-      @include sm {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
-    }
-    &.submit {
-      text-align: center;
-      cursor: pointer;
-      button,
-      input {
-        min-width: 140px;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
-    }
 
-    .custom-loader {
-      border: 2px solid $red;
-      padding: 20px;
-      min-width: 140px;
-
-      .css-1yt7yx7-MuiLoadingButton-loadingIndicator {
-        color: $red;
-
-        span {
-          height: 20px !important;
-          width: 20px !important;
-        }
-      }
-    }
-
-    .errorMsg {
-      color: #e51b23;
-      font-weight: 400;
-      margin: 0;
-      margin-top: 5px;
-      font-size: 13px;
-      text-align: left;
-    }
-    .over {
-      position: relative;
-      .locationIcon {
-        position: absolute;
-        left: 10px;
-        cursor: pointer;
-        top: 9px;
-        color: $red;
-        font-size: 24px;
-      }
-    }
-    .form-control {
-      width: 100%;
-      height: 42px;
-      border: 1px solid #c4c4c4;
-      outline: 0;
-      font-size: 14px;
-      font-family: $fontFamily;
-      font-weight: 500;
-      color: $textColor;
-      display: block;
-      background-color: $white;
-      &:focus {
-        border-color: $red;
-        + .locationIcon {
-          color: $red;
-        }
-      }
-      &.address {
-        padding-left: 42px;
-      }
-      @include border-radius(10px);
-      padding: 0 15px;
-    }
-    label {
-      position: relative;
-      margin-bottom: 0;
-      text-align: left;
-      cursor: pointer;
-      display: block;
-      padding-right: 30px !important;
-      input[type="file"] {
-        display: none;
-        + span {
-          line-height: 42px;
-          width: 100%;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-        }
-      }
-      .UploadIcon {
-        position: absolute;
-        top: 8px;
-        left: 100%;
-        color: $red;
-        display: block;
-        margin-left: -30px;
-        font-size: 24px;
-      }
-    }
-    input[type="number"],
-    input[type="date"] {
-      -moz-appearance: textfield;
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-    }
-  }
-}
 // About
 .About {
   padding-top: 40px;
@@ -524,6 +389,139 @@ $xs: 340px;
   }
 }
 
+// Ordertaking
+.Ordertaking {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  text-align: center;
+  @include lg {
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+  &_Title {
+    font-size: 32px;
+    font-weight: 600;
+    color: $red;
+    margin: 0 0 40px;
+    @include lg {
+      font-size: 26px;
+    }
+    i {
+      font-style: normal;
+      color: $dark;
+    }
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -13px;
+    margin-right: -13px;
+  }
+  &__box {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    width: 100%;
+    padding-left: 13px;
+    padding-right: 13px;
+    @include md {
+      flex: 0 0 50%;
+      max-width: 50%;
+      margin-bottom: 30px;
+    }
+    @include sm {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    img {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+    h4 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 15px;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+
+// Register
+.Register {
+  padding-bottom: 40px;
+  @include lg {
+    padding-bottom: 20px;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -20px;
+    margin-right: -20px;
+    align-items: center;
+    > div {
+      flex: 0 0 50%;
+      max-width: 50%;
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      @include md {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+  &__img {
+    @include md {
+      margin-bottom: 20px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  &_Title {
+    font-size: 32px;
+    font-weight: 600;
+    color: $red;
+    margin: 0 0 20px;
+    @include lg {
+      font-size: 26px;
+    }
+    i {
+      font-style: normal;
+      color: $dark;
+    }
+  }
+  p {
+    margin: 0 0 20px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding-left: 25px;
+      position: relative;
+      counter-increment: css-counter 1;
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: counter(css-counter) ". ";
+        font-size: 16px;
+        font-family: $fontFamily;
+        font-weight: 700;
+        color: $black;
+      }
+    }
+  }
+}
+
 // FAQ
 .faq {
   padding-bottom: 100px;
@@ -552,4 +550,3 @@ $xs: 340px;
    color: $textColor;
  }
 }
-

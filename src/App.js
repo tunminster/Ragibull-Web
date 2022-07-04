@@ -10,6 +10,7 @@ import Privacy from "./pages/Privacy";
 import Support from "./pages/Support";
 import Contact from "./pages/Contact";
 import ShopOwner from "./pages/ShopOwner";
+import ShopOwnerForm from "./pages/ShopOwnerForm";
 import DeliveryPartner from "./pages/DeliveryPartner";
 import ReactGA from "react-ga";
 import DeliveryPartnerForm from "./pages/DeliveryPartnerForm";
@@ -30,9 +31,12 @@ function App() {
 0       <Route path="/driver-onboarding" component={Register}></Route>
         <Route path="/shop-owner" component={ShopOwner}></Route>
         <Route path="/delivery-partner" component={DeliveryPartner}></Route>
-        <Route path="/" exact component={Home} render={() => <Redirect to="/delivery-partner-form" />} ></Route>
+        {/* <Route path="/" exact component={Home} render={() => <Redirect to="/delivery-partner-form" />} ></Route> */}
         <Route exact path="/delivery-partner-form" component={DeliveryPartnerForm}></Route>
         <Route exact path="/delivery-partner-form-submit" component={DeliveryPartnerFormSubmit}></Route>
+        <Route path="/" exact component={Home} render={() => <Redirect to="/form" />} ></Route>
+        <Route exact path="/shop-owner-form-submit" component={DeliveryPartnerFormSubmit}></Route>
+        <Route exact path="/shop-owner-form" component={ShopOwnerForm}></Route> 
         </Switch>
         <Footer />
       </Router>
