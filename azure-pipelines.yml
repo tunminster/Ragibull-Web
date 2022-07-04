@@ -91,6 +91,7 @@ stages:
               content: |
                 REACT_APP_SUBSCRIPTION_KEY=$(ragibull-web-api-subscription)
                 SKIP_PREFLIGHT_CHECK=true
+              outputFile: '$(Build.ArtifactStagingDirectory)/.env'
 
           - script: 'cat $(Build.ArtifactStagingDirectory)/devops/rw-deployment.yaml'
             displayName: 'Cat deploy'  
