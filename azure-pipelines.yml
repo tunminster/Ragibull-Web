@@ -39,12 +39,20 @@ stages:
     condition: and(succeeded(),eq(variables['build.sourceBranch'], 'refs/heads/master'))
     
     variables:
-        repository-image: 'pngoacr.azurecr.io/rw-app:$(Build.BuildNumber)'
-        acr-secret-name: 'hn-prod-acr-secret'
-        appsettings-secret-name: 'rw-appsettings-secret'
-        host-url: 'www.ragibull.com'
-        env-name: 'Development'
-        env-namespace: 'hn-prod'
+        - group: rb-web
+        - name: repository-image
+          value: 'pngoacr.azurecr.io/rw-app:$(Build.BuildNumber)'
+        - name: acr-secret-name
+          value: 'hn-prod-acr-secret'
+        - name: appsettings-secret-name
+          value: 'rw-appsettings-secret'
+        - name: host-url
+          value: 'www.ragibull.com'
+        - name: env-name
+          value: 'Development'
+        - name: env-namespace
+          value: 'hn-prod'
+        
 
     jobs:
       - job: DeployApp
