@@ -52,6 +52,10 @@ stages:
           value: 'Development'
         - name: env-namespace
           value: 'hn-prod'
+        - name: REACT_APP_SUBSCRIPTION_KEY
+          value: $(ragibull-web-api-subscription)
+        - name: SKIP_PREFLIGHT_CHECK
+          value: true
         
 
     jobs:
