@@ -76,6 +76,9 @@ stages:
                 SKIP_PREFLIGHT_CHECK=true
               outputFile: '$(System.DefaultWorkingDirectory)/.env'
 
+          - script: 'cat $(System.DefaultWorkingDirectory)/.env'
+            displayName: 'Cat env'
+
           - task: Docker@2
             inputs:
               containerRegistry: 'hn-acr-connection'
@@ -98,8 +101,7 @@ stages:
               targetFiles: 'rw-deployment.yaml'
               escapeType: none    
 
-          - script: 'cat $(Build.ArtifactStagingDirectory)/.env'
-            displayName: 'Cat env'
+          
 
           - script: 'cat $(Build.ArtifactStagingDirectory)/devops/rw-deployment.yaml'
             displayName: 'Cat deploy'  
