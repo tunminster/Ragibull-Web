@@ -1,3 +1,4 @@
+import React from 'react';
 import "../sass/Home.scss";
 import { Grid } from "@mui/material";
 import BannerImg from "../assets/images/banner-img.png";

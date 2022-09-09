@@ -87,6 +87,27 @@ body {
   }
   
   // Buttons
+  .MuiButton-containedPrimary {
+    font-size: 14px;
+    font-family: $fontFamily;
+    font-weight: 600;
+    color: $white;
+    background-color: $red;
+    border: 2px solid $red;
+    border-radius: 10px;
+    min-width: 64px;
+    padding: 8px 20px;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    @include md {
+      padding: 7px 15px;
+    }
+    &:hover,
+    &:focus {
+      background-color: $red;
+      color: $white;
+    }
+  }
   .MuiButton-outlinedPrimary {
     font-size: 14px;
     font-family: $fontFamily;
@@ -116,3 +137,7 @@ body {
   font-size: 22px;
 }
 
+
+p {
+  font-family: $fontFamily !important;
+}

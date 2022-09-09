@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+// Veriables
+$fontFamily: 'Montserrat', sans-serif;
+
+$red: #e51b23;
+$dark: #222;
+$textColor: #3c3c3c;
+$black: #000;
+$white: #fff;
+
+//Media Breakpoint
+$xl: 1024px;
+$lg: 991px;
+$md: 767px;
+$sm: 575px;
+$xs: 340px;
+
+@mixin xl {
+  @media (max-width: #{$xl}) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (max-width: #{$lg}) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: #{$md}) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (max-width: #{$sm}) {
+    @content;
+  }
+}
+@mixin xs {
+  @media (max-width: #{$xs}) {
+    @content;
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin box-shadow($boxShadow) {
+  -webkit-box-shadow: $boxShadow;
+  -moz-box-shadow: $boxShadow;
+  box-shadow: $boxShadow;
+}
+
+#main {
+  > div {
+    width: 100%;
+  }
+}
+
+.filterBanner {
+    background-image: url(../assets/images/user-home-banner-img.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: #F6F6F6;
+    @include lg {
+        background-size: 100% 100%;
+        min-height: 350px;
+    }
+    @include sm {
+        background-size: cover;
+        min-height: 350px;
+        padding: 170px 0 20px !important;
+    }
+    h2 {
+        font-size: 46px;
+        font-family: $fontFamily;
+        font-weight: 600;
+        color: $dark;
+        margin-bottom: 5px;
+        @include lg {
+            font-size: 34px;
+        }
+        @include sm {
+            font-size: 24px;
+        }
+    }
+    p {
+        font-size: 15px;
+        font-family: $fontFamily;
+        font-weight: 400;
+        color: #3C3C3C;
+        margin-bottom: 20px;
+        @include lg {
+            font-size: 14px;
+            padding: 0 20%;
+        }
+        @include sm {
+            padding: 0;
+        }
+    }
+    .filterForm {
+        width: 100%;
+        &__bg {
+            background-color: $red;
+            width: 100%;
+            max-width: 1025px;
+            padding: 20px;
+            .row {
+                display: flex;
+                align-items: center;
+                margin-left: -10px;
+                margin-right: -10px;
+                .col-6 {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    width: 100%;
+                    max-width: 50%;
+                    flex: 0 0 50%;
+                    @include sm {
+                        max-width: 100%;
+                        flex: 0 0 100%;
+                    }
+                }
+            }
+            .last {
+                display: flex;
+                flex-wrap: wrap;
+                margin-left: -10px;
+                margin-right: -10px;
+                .form-group {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    flex: 0 0 50%;
+                    max-width: 50%;
+                    width: 100%;
+                    @include sm {
+                        max-width: 100%;
+                        flex: 0 0 100%;
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+        .form-group {
+            position: relative;
+            margin-bottom: 0;
+            padding: 0;
+            .form-control {
+                border-radius: 0;
+            }
+            &.search {
+                .icon {
+                    svg {
+                        left: 7px;
+                    }
+                }
+            }
+            .icon {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                + .form-control {
+                    padding-left: 40px;
+                }
+            }
+            .custom-select {
+                appearance: none;
+                background-image: url(../assets/images/select-arrow.png);
+                background-repeat: no-repeat;
+                background-position: 95% center;
+                background-size: 18px auto;
+            }
+            .btn-primary {
+                width: 100%;
+                height: 42px;
+                border: 0;
+                outline: 0;
+                font-size: 15px;
+                font-family: $fontFamily;
+                font-weight: 700;
+                color: $white;
+                background-color: #4CCE4A;
+                cursor: pointer;
+                &:hover {
+                    background-color: lighten($color: #4CCE4A, $amount: 5);
+                }
+            }
+        }
+    }
+}
+
+.serviceBox {
+    padding-top: 40px;
+    padding-bottom: 77px;
+    @include lg {
+        padding-bottom: 40px;
+    }
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    .box {
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+        @include sm {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+        img {
+            margin-bottom: 15px;
+            @include lg {
+                margin-bottom: 5px;
+            }
+        }
+        h5 {
+            font-size: 20px;
+            font-family: $fontFamily;
+            font-weight: 600;
+            color: #282828;
+            margin: 0;
+            @include lg {
+                font-size: 16px;
+            }
+        }
+        p {
+            font-size: 15px;
+            font-family: $fontFamily;
+            font-weight: 400;
+            color: #333232;
+            margin: 0;
+            @include lg {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.cities {
+    width: 100%;
+    padding-bottom: 62px;
+    @include md {
+        padding-bottom: 20px;
+    }
+    h2 {
+        font-size: 32px;
+        font-family: $fontFamily;
+        font-weight: 600;
+        color: #282828;
+        margin-top: 0;
+        margin-bottom: 15px;
+        span {
+            font-size: 14px;
+            font-weight: 400;
+            @include sm {
+                display: block;
+                padding-top: 5px;
+            }
+        }
+    }
+    iframe {
+        width: 100%;
+        height: 307px;
+        border: 0;
+        display: block;
+        margin-bottom: 30px;
+    }
+    ul {
+        list-style: none;
+        margin: 0 -10px;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            padding-left: 10px;
+            padding-right: 10px;
+            flex: 0 0 25%;
+            max-width: 25%;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 500;
+            color: $dark;
+            margin-bottom: 15px;
+            @include lg {
+                flex: 0 0 33.33%;
+                max-width: 33.33%;
+            }
+            @include md {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+    }
+}

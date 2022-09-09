@@ -1,5 +1,5 @@
+import React from 'react';
 import "./App.scss";
-import Header from "./components/layout/Header";
 import Home from "./pages/Home";
 import Footer from "./components/layout/Footer";
 import Register from "./pages/Register";
@@ -16,6 +16,11 @@ import ReactGA from "react-ga";
 import DeliveryPartnerForm from "./pages/DeliveryPartnerForm";
 import DeliveryPartnerFormSubmit from "./pages/DeliveryPartnerFormSubmit";
 import { Redirect } from "react-router-dom";
+import CustomerHome from './pages/CustomerHome';
+import UserLogin from './pages/UserLogin';
+import UserSignUp from './pages/UserSignUp';
+import UserForgotPassword from './pages/UserForgotPassword';
+import UserCreatePassword from './pages/UserCreatePassword';
 
 function App() {
   ReactGA.initialize('G-4S7EBSPZLR');
@@ -28,7 +33,7 @@ function App() {
         <Route path="/privacy" component={Privacy}></Route>
         <Route path="/terms" component={Terms}></Route>
         <Route path="/shop-owner-onboarding" component={ShopRegister}></Route>
-0       <Route path="/driver-onboarding" component={Register}></Route>
+        <Route path="/driver-onboarding" component={Register}></Route>
         <Route path="/shop-owner" component={ShopOwner}></Route>
         <Route path="/delivery-partner" component={DeliveryPartner}></Route>
         {/* <Route path="/" exact component={Home} render={() => <Redirect to="/delivery-partner-form" />} ></Route> */}
@@ -36,7 +41,12 @@ function App() {
         <Route exact path="/delivery-partner-form-submit" component={DeliveryPartnerFormSubmit}></Route>
         <Route path="/" exact component={Home} render={() => <Redirect to="/form" />} ></Route>
         <Route exact path="/shop-owner-form-submit" component={DeliveryPartnerFormSubmit}></Route>
-        <Route exact path="/shop-owner-form" component={ShopOwnerForm}></Route> 
+        <Route exact path="/shop-owner-form" component={ShopOwnerForm}></Route>
+        <Route exact path="/user-home" component={CustomerHome}></Route> 
+        <Route exact path="/user-login" component={UserLogin}></Route>
+        <Route exact path="/user-signup" component={UserSignUp}></Route>
+        <Route exact path="/user-forgot-password" component={UserForgotPassword}></Route>
+        <Route exact path="/user-create-password" component={UserCreatePassword}></Route>
         </Switch>
         <Footer />
       </Router>

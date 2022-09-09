@@ -10,8 +10,8 @@ import RegisterImg from "../assets/images/register-img.png";
 import { geolocated } from "react-geolocated";
 import { API } from "../api/API";
 import Header from "../components/layout/Header";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
 import { useLocation } from "react-router";
 

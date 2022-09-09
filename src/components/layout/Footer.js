@@ -1,3 +1,4 @@
+import React from 'react';
 import '../../sass/Footer.scss';
 import { Grid } from '@mui/material';
 import logo from '../../assets/images/logo.png';
@@ -34,8 +35,8 @@ const Footer=()=> {
             <img src={appImg} className="App_footer-img" alt="App" />
             <h4>Download The App</h4>
             <ul>
-              <li><a href="https://apps.apple.com/us/app/ragibull/id1556833583" target="_blank"><img src={appStore} alt="App Store" /></a></li>
-              <li><a href="https://play.google.com/store/apps/details?id=com.ragibull.app" target="_blank"><img src={playStore} alt="Play Store" /></a></li>
+              <li><a href="https://apps.apple.com/us/app/ragibull/id1556833583" target="_blank" rel="noreferrer"><img src={appStore} alt="App Store" /></a></li>
+              <li><a href="https://play.google.com/store/apps/details?id=com.ragibull.app" target="_blank" rel="noreferrer"><img src={playStore} alt="Play Store" /></a></li>
             </ul>
           </Grid>
         </Grid>
@@ -55,17 +56,17 @@ const Footer=()=> {
               <ul>
                 <li>Connect With Us</li>
                 <li>
-                  <a href="https://www.instagram.com/Ragibull01/" target="_blank">
+                  <a href="https://www.instagram.com/Ragibull01/" target="_blank" rel="noreferrer">
                     <img src={InstagramIcon} alt="Instagram" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/BullRagi" target="_blank">
+                  <a href="https://twitter.com/BullRagi" target="_blank" rel="noreferrer">
                     <img src={TwitterIcon} alt="Twitter" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/RagiBull01" target="_blank">
+                  <a href="https://www.facebook.com/RagiBull01" target="_blank" rel="noreferrer">
                     <img src={FacebookIcon} alt="Facebook" />
                   </a>
                 </li>

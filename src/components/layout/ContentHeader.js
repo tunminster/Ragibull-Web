@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from "../../assets/images/logo.png";
 import "../../sass/Header.scss";
 import { Button, Grid } from "@mui/material";

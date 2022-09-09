@@ -1,18 +1,20 @@
 /* eslint-disable default-case */
 import React, { useEffect, useState } from "react";
 import "../sass/Register.scss";
-import { Grid, Button } from "@mui/material";
+import { Grid } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import Geocode from "react-geocode";
-import { useForm } from "react-hook-form";
 import RegisterImg from "../assets/images/register-img.png";
+// eslint-disable-next-line no-unused-vars
 import { geolocated } from "react-geolocated";
 import { API } from "../api/API";
 import Header from "../components/layout/Header";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
+// eslint-disable-next-line no-unused-vars
 import { useLocation, useParams } from "react-router";
 
 const requiredValidationMsg = "This field is required.";
