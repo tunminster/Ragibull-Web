@@ -10,19 +10,23 @@ const OrderFilter = () => {
                 <Grid className='row'>
                     <Box className="col-6">
                         <Box className='form-group search'>
-                            <span className='icon'><FmdGoodIcon /></span>
-                            <input type={'text'} placeholder='Enter Delivery address' className='form-control' />
+                            <div className='position-relative'>
+                                <span className='icon'><FmdGoodIcon /></span>
+                                <input type={'text'} placeholder='Enter Delivery address' className='form-control' />
+                            </div>
                         </Box>
                     </Box>
                     <Box className="col-6">
                         <Box className='last'>
                             <Box className='form-group'>
-                                <span className='icon'><WatchLaterOutlinedIcon /></span>
-                                <select className='form-control custom-select'>
-                                    <option value="Deliver Now">Deliver Now</option>
-                                    <option value="Deliver Now">Deliver Now</option>
-                                    <option value="Deliver Now">Deliver Now</option>
-                                </select>
+                                <div className='position-relative'>
+                                    <span className='icon'><WatchLaterOutlinedIcon /></span>
+                                    <select className='form-control custom-select'>
+                                        <option value="Deliver Now">Deliver Now</option>
+                                        <option value="Deliver Now">Deliver Now</option>
+                                        <option value="Deliver Now">Deliver Now</option>
+                                    </select>
+                                </div>
                             </Box>
                             <Box className='form-group'>
                                 <button type='button' className='btn btn-primary'>Find Food</button>

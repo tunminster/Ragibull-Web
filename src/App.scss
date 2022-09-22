@@ -71,6 +71,12 @@ html {
   scroll-behavior: smooth;
 }
 
+iframe {
+  position: relative !important;
+  height: 0 !important;
+  display: block;
+}
+
 body {
   font-size: 15px;
   font-family: $fontFamily;
@@ -99,6 +105,7 @@ body {
     padding: 8px 20px;
     line-height: 1.75;
     letter-spacing: 0.02857em;
+    text-transform: capitalize;
     @include md {
       padding: 7px 15px;
     }
@@ -120,6 +127,7 @@ body {
     line-height: 1.75;
     letter-spacing: 0.02857em;
     background-color: transparent;
+    text-transform: capitalize;
     @include md {
       padding: 7px 15px;
     }
@@ -140,4 +148,9 @@ body {
 
 p {
   font-family: $fontFamily !important;
+}
+
+.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked,
+.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate {
+  color: $red !important;
 }

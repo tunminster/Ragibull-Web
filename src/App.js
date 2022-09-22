@@ -21,6 +21,10 @@ import UserLogin from './pages/UserLogin';
 import UserSignUp from './pages/UserSignUp';
 import UserForgotPassword from './pages/UserForgotPassword';
 import UserCreatePassword from './pages/UserCreatePassword';
+import ProductList from 'pages/ProductList';
+import ProductDetail from 'pages/ProductDetail';
+import ProductOrders from 'pages/ProductOrders';
+import ProductOrderPayment from 'pages/ProductOrderPayment';
 
 function App() {
   ReactGA.initialize('G-4S7EBSPZLR');
@@ -47,6 +51,10 @@ function App() {
         <Route exact path="/user-signup" component={UserSignUp}></Route>
         <Route exact path="/user-forgot-password" component={UserForgotPassword}></Route>
         <Route exact path="/user-create-password" component={UserCreatePassword}></Route>
+        <Route exact path="/products" component={ProductList}></Route>
+        <Route exact path="/product-detail" component={ProductDetail}></Route>
+        <Route exact path="/product-orders" component={ProductOrders}></Route>
+        <Route exact path="/product-order-payment" component={ProductOrderPayment}></Route>
         </Switch>
         <Footer />
       </Router>

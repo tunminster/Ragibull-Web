@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 import logo from 'assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import 'sass/UserLogin.scss';

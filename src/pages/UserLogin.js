@@ -51,7 +51,9 @@ const UserLogin = () => {
                     </Box>
                 </Box>
                 <Box className='submit' sx={{ textAlign: 'center'}}>
-                    <Button variant="outlined" sx={{ width: '169px', mb: '13px'}}>Login</Button>
+                    <Link to="/products">
+                        <Button variant="outlined" sx={{ width: '169px', mb: '13px'}}>Login</Button>
+                    </Link>
                     <Typography sx={{ m: 0, fontSize: '14px', color: '#282828', fontFamily: 'Montserrat", sans-serif', fontWeight: '500' }}>Don’t Have An Account? <Link to="/user-signup" style={{ color: '#E51B23'}}>Sign Up</Link></Typography>
                 </Box>
                 <Box sx={{ pt: '32px'}}>

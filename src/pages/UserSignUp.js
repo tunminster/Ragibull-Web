@@ -47,7 +47,9 @@ const UserSignUp = () => {
                     <input type={'password'} placeholder="Enter Password" className="form-control" />
                 </Box>
                 <Box className='submit' sx={{ textAlign: 'center', pt: '20px' }}>
+                    <Link to="/products">
                     <Button variant="outlined" sx={{ width: '169px', mb: '13px'}}>Sign Up</Button>
+                    </Link>
                     <Typography sx={{ m: 0, fontSize: '14px', color: '#282828', fontFamily: 'Montserrat", sans-serif', fontWeight: '500' }}>Do You Have An Account? <Link to="/user-login" style={{ color: '#E51B23'}}>Login</Link></Typography>
                 </Box>
                 <Box sx={{ pt: '32px'}}>

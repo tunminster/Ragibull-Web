@@ -151,12 +151,97 @@ $xs: 340px;
   &.customerHeader {
     background-color: $white;
     @include box-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    .App_header--logo {
-      img {
-        max-width: 180px;
-        cursor: pointer;
-        @include md {
-          margin: 0 auto;
+    .App_header {
+      &--logo {
+        img {
+          max-width: 180px;
+          cursor: pointer;
+          @include md {
+            margin: 0 auto;
+          }
+        }
+      }
+      &--links {
+        button {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+
+  &.customerSearchHeader {
+    background-color: $white;
+    @include box-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    .App_header {
+      &--logo {
+        img {
+          max-width: 180px;
+          cursor: pointer;
+          @include md {
+            margin: 0 auto;
+          }
+        }
+      }
+      &--links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        .search {
+          margin-right: auto;
+          width: 100%;
+          max-width: 443px;
+          position: relative;
+          @include lg {
+            max-width: 280px;
+          }
+          @include sm {
+            max-width: 100%;
+            margin-bottom: 20px;
+          }
+          &__icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            svg {
+              color: #949494 !important;
+              margin-right: 0;
+              font-size: 18px;
+            }
+          }
+          .form-control {
+            width: 100%;
+            background: rgba(196, 196, 196, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            @include border-radius(10px);
+            font-size: 16px;
+            height: 44px;
+            outline: 0;
+            @include box-shadow(none);
+            padding: 0 50px 0 15px;
+          }
+        }
+        button {
+          text-transform: capitalize;
+          @include lg {
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+          svg {
+            color: $red;
+            font-size: 22px;
+            margin-right: 10px;
+          }
+          &:hover {
+            svg {
+              color: $white;
+            }
+          }
         }
       }
     }
