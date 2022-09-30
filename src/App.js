@@ -25,6 +25,8 @@ import ProductList from 'pages/ProductList';
 import ProductDetail from 'pages/ProductDetail';
 import ProductOrders from 'pages/ProductOrders';
 import ProductOrderPayment from 'pages/ProductOrderPayment';
+import { AuthProvider } from 'context/AuthContext/AuthContext';
+import PrivateRoute from 'PrivateRoute/PrivateRoute';
 
 function App() {
   ReactGA.initialize('G-4S7EBSPZLR');
@@ -46,15 +48,17 @@ function App() {
         <Route path="/" exact component={Home} render={() => <Redirect to="/form" />} ></Route>
         <Route exact path="/shop-owner-form-submit" component={DeliveryPartnerFormSubmit}></Route>
         <Route exact path="/shop-owner-form" component={ShopOwnerForm}></Route>
+        <AuthProvider>
         <Route exact path="/user-home" component={CustomerHome}></Route> 
         <Route exact path="/user-login" component={UserLogin}></Route>
         <Route exact path="/user-signup" component={UserSignUp}></Route>
         <Route exact path="/user-forgot-password" component={UserForgotPassword}></Route>
         <Route exact path="/user-create-password" component={UserCreatePassword}></Route>
-        <Route exact path="/products" component={ProductList}></Route>
-        <Route exact path="/product-detail" component={ProductDetail}></Route>
-        <Route exact path="/product-orders" component={ProductOrders}></Route>
-        <Route exact path="/product-order-payment" component={ProductOrderPayment}></Route>
+        <PrivateRoute exact path="/products" component={ProductList}></PrivateRoute>
+        <PrivateRoute exact path="/product-detail" component={ProductDetail}></PrivateRoute>
+        <PrivateRoute exact path="/product-orders" component={ProductOrders}></PrivateRoute>
+        <PrivateRoute exact path="/product-order-payment" component={ProductOrderPayment}></PrivateRoute>
+        </AuthProvider>
         </Switch>
         <Footer />
       </Router>

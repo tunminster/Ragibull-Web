@@ -2,11 +2,20 @@ import axios from "axios";
 import { EndPoints } from "./EndPoints";
 const BASE_URL_OLD = "https://api-gateway.ragibull.com/on-boarding/api/v1/on-boarding";
 const BASE_URL = "https://api-gateway.ragibull.com/webapp/api/v1/on-boarding"
+const USER_BASE_URL = "https://api-gateway.ragibull.com/customer/api"
 export const AxiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 235000,
- 
+
 });
+
+export const UserAxiosInstance = axios.create({
+  baseURL: USER_BASE_URL,
+  timeout: 235000,
+
+});
+
+const subscriptionKey=process.env.REACT_APP_SUBSCRIPTION_KEY
 
 export const API = {
   async RegisterDriver(driverDetails, docFile, subscriptionKey, id) {
@@ -31,7 +40,7 @@ export const API = {
           },
         }
       );
-      console.log('aa',response);
+      console.log('aa', response);
       if (response.data) {
         console.log({ response });
         return response.data
@@ -116,7 +125,7 @@ export const API = {
     }
   },
   async VerifyOTP(userDetails, subscriptionKey) {
-  
+
     try {
       let response = await AxiosInstance.post(
         EndPoints.verifyUserOtp,
@@ -139,7 +148,7 @@ export const API = {
     }
   },
   async VerifyOwnerOtpApi(userDetails, subscriptionKey) {
-  
+
     try {
       let response = await AxiosInstance.post(
         EndPoints.verifyOwnerOtp,
@@ -160,6 +169,97 @@ export const API = {
       return error.response;
     }
   },
+
+
+  async userSignUp(params) {
+
+    try {
+      let response = await UserAxiosInstance.post(
+        EndPoints.registerUser,
+        params,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      return error.response;
+    }
+  }, 
+  
+  async sendOTPOnUserEmail(params) {
+
+    try {
+      let response = await UserAxiosInstance.post(
+        EndPoints.userSendOTP,
+        params,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      return error.response;
+    }
+  }, 
+  
+  async verifyUserOTP(params) {
+
+    try {
+      let response = await UserAxiosInstance.post(
+        EndPoints.userVerifyOTP,
+        params,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      return error.response;
+    }
+  }, 
+  
+  async userLogin(params) {
+
+    try {
+      let response = await UserAxiosInstance.post(
+        EndPoints.loginUser,
+        params,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+          },
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response.data
+      }
+    } catch (error) {
+      return error.response;
+    }
+  },
   async RegisterDriverAPI(driverDetails, driverImageFile, licenseFrontFile, licenseBackFile, subscriptionKey) {
     var formData = new FormData();
 
@@ -172,7 +272,7 @@ export const API = {
 
     formData.append("driverImage", driverImageFile);
     formData.append("drivingLicenseBackImage", licenseBackFile);
-    formData.append("drivingLicenseFrontImage", licenseFrontFile);  
+    formData.append("drivingLicenseFrontImage", licenseFrontFile);
     try {
       let response = await AxiosInstance.post(
         EndPoints.registerDriver,
@@ -222,7 +322,7 @@ export const API = {
     }
   },
   async GetStoreTypes(subscriptionKey) {
-  
+
     try {
       let response = await AxiosInstance.get(
         EndPoints.getShopTypes,

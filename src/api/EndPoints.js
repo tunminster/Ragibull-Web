@@ -6,4 +6,8 @@ export const EndPoints = {
     verifyOwnerOtp: "/shop-owner/verify-email-otp?culture=en",
     registerShopOwner: "/shop-owner/register?culture=en",
     getShopTypes: "/shop-owner/GetAllStoreTypes?culture=en",
+    userSendOTP:"/Auth/request-email-otp?culture=en",
+    userVerifyOTP:"/Auth/verify-email-otp",
+    registerUser:"/User/register?culture=en",
+    loginUser:"/Auth/login?culture=en"
 }
