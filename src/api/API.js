@@ -341,5 +341,54 @@ export const API = {
       console.log(error);
       return error.response;
     }
+  }, 
+  
+  
+  async getDataByLocation(token,params) {
+    try {
+      let response = await UserAxiosInstance.get(
+        EndPoints.searchByLocation,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+            "Authorization":`Bearer ${token}`
+          },
+          params: {
+            ...params
+          }
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response
+      }
+    } catch (error) {
+      console.log(error);
+      return error.response;
+    }
+  },
+  
+  async getUserDetails(token) {
+    try {
+      let response = await UserAxiosInstance.get(
+        EndPoints.getUserDetails,
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Content-Type": 'application/json',
+            "Authorization":`Bearer ${token}`
+          },
+          
+        }
+      );
+      if (response.data) {
+        console.log({ response });
+        return response
+      }
+    } catch (error) {
+      console.log(error);
+      return error.response;
+    }
   },
 };

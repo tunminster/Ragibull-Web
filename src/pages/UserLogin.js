@@ -58,13 +58,17 @@ const UserLogin = () => {
         try {
             const response = await API.userLogin(data)            
             if(response ?.auth_token) {
+                let userData=JSON.stringify(response)
                 localStorage.removeItem("userData");
                 localStorage.removeItem("isLoggedIn")
+                localStorage.removeItem("t")
+                localStorage.setItem("userData",userData);
+                localStorage.setItem("t",response.auth_token);
 
-                localStorage.setItem("userData",response);
                 localStorage.setItem("isLoggedIn",true);
                 authContext.doLogin(true)
-                authContext.setUserData(response)
+                authContext.setUserToken(response.auth_token)
+                authContext.setUserData(userData)
                 alert("Login sucessfully")
                 history.replace("/products")
             }

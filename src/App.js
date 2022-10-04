@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./App.scss";
 import Home from "./pages/Home";
 import Footer from "./components/layout/Footer";
@@ -25,11 +25,54 @@ import ProductList from 'pages/ProductList';
 import ProductDetail from 'pages/ProductDetail';
 import ProductOrders from 'pages/ProductOrders';
 import ProductOrderPayment from 'pages/ProductOrderPayment';
-import { AuthProvider } from 'context/AuthContext/AuthContext';
+import { AuthProvider, useAuthContext } from 'context/AuthContext/AuthContext';
 import PrivateRoute from 'PrivateRoute/PrivateRoute';
+import { API } from 'api/API';
 
 function App() {
   ReactGA.initialize('G-4S7EBSPZLR');
+
+  const authContext=useAuthContext()
+
+  console.log(authContext);
+
+
+  useEffect(() => {
+   
+    let token=localStorage.getItem("t");
+    if(token) {
+      console.log({token});
+    let userData=localStorage.getItem("userData");
+let parsedUserData=JSON.parse(userData)
+      mappUserDetails(token,parsedUserData)
+    }
+  }, [authContext?.isLoggedIn])
+
+  const mappUserDetails = async (token,data) => {
+    try {
+        const response = await API.getUserDetails(token)  
+        const data=response.data      
+        console.log('response',data,data?.userName);    
+
+        if(data?.userName) {
+            
+            // authContext.doLogin(true)
+            // authContext.setUserToken(token)
+            // authContext.setUserData(data)
+        }
+        else {
+            alert("Error")
+        }
+
+    }
+    catch (e) {
+        console.error(e);
+        alert("Network Error")
+
+    }
+    
+}  
+  
   return (
     <div className="App">
       <Router>

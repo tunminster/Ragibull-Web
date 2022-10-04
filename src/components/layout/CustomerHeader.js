@@ -10,7 +10,6 @@ import { useAuthContext } from 'context/AuthContext/AuthContext';
 const CustomerHeader = ({customClass}) => {
 
   const authContext = useAuthContext()
-  console.log('authContext',authContext);
 
   const history = useHistory();
 

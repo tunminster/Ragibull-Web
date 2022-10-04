@@ -9,5 +9,7 @@ export const EndPoints = {
     userSendOTP:"/Auth/request-email-otp?culture=en",
     userVerifyOTP:"/Auth/verify-email-otp",
     registerUser:"/User/register?culture=en",
-    loginUser:"/Auth/login?culture=en"
+    loginUser:"/Auth/login?culture=en",
+    searchByLocation:"/v1/Store/Stores-Search",
+    getUserDetails:'User/GetUser?culture=en'
 }
