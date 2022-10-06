@@ -34,14 +34,12 @@ function App() {
 
   const authContext=useAuthContext()
 
-  console.log(authContext);
+  console.log('isLoggedIn',authContext);
 
 
   useEffect(() => {
-   
     let token=localStorage.getItem("t");
     if(token) {
-      console.log({token});
     let userData=localStorage.getItem("userData");
 let parsedUserData=JSON.parse(userData)
       mappUserDetails(token,parsedUserData)
@@ -55,15 +53,10 @@ let parsedUserData=JSON.parse(userData)
         console.log('response',data,data?.userName);    
 
         if(data?.userName) {
-            
-            // authContext.doLogin(true)
-            // authContext.setUserToken(token)
-            // authContext.setUserData(data)
+            authContext.doLogin(true)
+            authContext.setUserToken(token)
+            authContext.setUserData(data)
         }
-        else {
-            alert("Error")
-        }
-
     }
     catch (e) {
         console.error(e);
@@ -74,7 +67,10 @@ let parsedUserData=JSON.parse(userData)
 }  
   
   return (
+    <>
     <div className="App">
+      
+
       <Router>
         <Switch>
         <Route path="/support" component={Support}></Route>
@@ -91,7 +87,6 @@ let parsedUserData=JSON.parse(userData)
         <Route path="/" exact component={Home} render={() => <Redirect to="/form" />} ></Route>
         <Route exact path="/shop-owner-form-submit" component={DeliveryPartnerFormSubmit}></Route>
         <Route exact path="/shop-owner-form" component={ShopOwnerForm}></Route>
-        <AuthProvider>
         <Route exact path="/user-home" component={CustomerHome}></Route> 
         <Route exact path="/user-login" component={UserLogin}></Route>
         <Route exact path="/user-signup" component={UserSignUp}></Route>
@@ -101,12 +96,17 @@ let parsedUserData=JSON.parse(userData)
         <PrivateRoute exact path="/product-detail" component={ProductDetail}></PrivateRoute>
         <PrivateRoute exact path="/product-orders" component={ProductOrders}></PrivateRoute>
         <PrivateRoute exact path="/product-order-payment" component={ProductOrderPayment}></PrivateRoute>
-        </AuthProvider>
         </Switch>
         <Footer />
       </Router>
+    
+
     </div>
+    </>
   );
+  
 }
+
+
 
 export default App;

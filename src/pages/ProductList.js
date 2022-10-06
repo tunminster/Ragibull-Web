@@ -20,6 +20,11 @@ import Geocode from "react-geocode";
 import { useEffect } from 'react';
 import { API } from 'api/API';
 import { useAuthContext } from 'context/AuthContext/AuthContext';
+import ButtonLoader from 'components/common/ButtonLoader';
+import Autocomplete from "react-google-autocomplete";
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import ReactGoogleAutocomplete from 'react-google-autocomplete';
+
 
 
 const categoryData = [
@@ -106,7 +111,10 @@ const featureData = [
 const ProductList = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        localStorage.removeItem("a")
+        setOpen(false);
+    }
 
 
     const [isLoading, setIsLoading] = useState(false)
@@ -175,31 +183,21 @@ const ProductList = () => {
         pageSize: 20
     });
 
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            setUserLocation(prevState => ({
-                ...prevState,
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
+    const [stores, setStores] = useState([])
 
-            }))
-            // getDataFromAMap();
-        });
+
+
+
+    useEffect(() => {
+        if (localStorage.getItem("a"))
+            setOpen(true)
     }, []);
 
-    useEffect(() => {
-        // getDataFromAMap();
-    }, [userLocation]);
+    const [value, setValue] = useState(null);
+
+  
 
 
-    useEffect(() => {
-        console.log('user location', userLocation);
-        if (userLocation?.latitude && userLocation?.longitude) {
-            setOpen(true)
-            // searchByLocation()  
-
-        }
-    }, [userLocation]);
 
     // console.log("key", process.env.REACT_APP_GOOGLE_MAP_API_KEY);
 
@@ -211,69 +209,24 @@ const ProductList = () => {
 
     Geocode.enableDebug();
 
-    const getDataFromAMap = () => {
-        Geocode.fromLatLng(userLocation.latitude, userLocation.longitude).then(
-            (response) => {
-                console.log({ response });
-                const address1 = response.results[0].address_components[0].short_name;
-                const address2 = response.results[0].address_components[1].long_name;
-                let city, state, country, postelCode;
-                for (
-                    let i = 0;
-                    i < response.results[0].address_components.length;
-                    i++
-                ) {
-                    for (
-                        let j = 0;
-                        j < response.results[0].address_components[i].types.length;
-                        j++
-                    ) {
-                        switch (response.results[0].address_components[i].types[j]) {
-                            case "locality":
-                                city = response.results[0].address_components[i].long_name;
-                                break;
-                            case "administrative_area_level_1":
-                                state = response.results[0].address_components[i].long_name;
-                                break;
-                            case "country":
-                                country = response.results[0].address_components[i].long_name;
-                                break;
-                            case "postal_code":
-                                postelCode =
-                                    response.results[0].address_components[i].long_name;
-                                break;
-                        }
-                    }
-                }
-                let tempData = {
-                    addressLine1: address1,
-                    addressLine2: address2,
-                    city: city,
-                    county: state,
-                    // country: country,
-                    postalCode: postelCode,
-                };
-            },
-            (error) => {
-                console.error(error);
-            }
-        );
-    };
-
+   
 
 
 
 
     const searchByLocation = async () => {
         try {
+            setIsLoading(true)
             const response = await API.getDataByLocation(token, userLocation)
             console.log(response);
-            if (response) {
-                alert("Success")
-
+            const data= response.data
+            if (data?.length>0) {
+                setStores([...data])
             }
             else {
-                alert("Error")
+                setStores([])
+
+                alert("No Stores Near Your Location ")
             }
         }
         catch (e) {
@@ -287,17 +240,39 @@ const ProductList = () => {
 
         }
     }
+  
 
-
-    const onLocatioChange=(value)=>{
-        setUserLocation(prevState => ({
-            ...prevState,
-            searchQuery: value,
-        }))
+    const onSubmitLocation = () => {
+        localStorage.removeItem("a")
+        searchByLocation()
     }
 
-    const onSubmitLocation=()=>{
-        searchByLocation()
+    useEffect(()=>{
+console.log('location',value);
+if(value!==null) 
+onAddressSelected(value)
+    },[value])
+
+    const onAddressSelected = (value) => {
+        console.log({value});
+       
+
+        Geocode.fromAddress(value.label).then(
+            (response) => {
+                const { lat, lng } = response.results[0].geometry.location;
+                console.log(lat, lng);
+
+                setUserLocation(prevState => ({
+                    ...prevState,
+                    latitude: lat,
+                    longitude: lng,
+                }))
+
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
     }
 
 
@@ -308,7 +283,7 @@ const ProductList = () => {
                 <Grid className="container">
                     <Grid className='row'>
                         <Box className='productList__filter'>
-                            <ProductFilter />
+                            <ProductFilter currentLocation={value?.label} onChangeLocation={() => setOpen(true)} />
                         </Box>
                         <Box className='productList__list'>
                             {/* Category Slider */}
@@ -333,23 +308,25 @@ const ProductList = () => {
                                     <Typography variant="span">Paid placements from our partners</Typography>
                                 </Typography>
                                 <Grid className='slider feature'>
+                                    <>
+                                    {stores && stores?.length>0?
                                     <Slider {...featureFun}>
-                                        {featureData.map(item => (
-                                            <Box className='item' key={item.id}>
+                                        {stores.map(item => (
+                                            <Box className='item' key={item.storeId}>
                                                 <Link to="/product-detail">
                                                     <Box className='cover'>
-                                                        <img src={item.img} alt={item.name} />
+                                                        <img src={item.imageUri} alt={item.storeName} />
                                                         <Box className='text'>
                                                             <span className='time'>
-                                                                {item.time}
+                                                                {item.time || '30-45'}
                                                                 <i>min</i>
                                                             </span>
-                                                            <h4>{item.title}</h4>
+                                                            <h4>{item.storeName || 'Test'}</h4>
                                                             <span className="rating">
-                                                                <FaStar /> {item.rating} <i>({item.ratingNo}+)</i>
+                                                                <FaStar /> {0} <i>({}+)</i>
                                                             </span>
                                                             <ul>
-                                                                <li>{item.away}</li>
+                                                                <li>{item?.distance?.toFixed() + " " +'miles away'}</li>
                                                                 <li>{item.delivery}</li>
                                                             </ul>
                                                         </Box>
@@ -358,6 +335,18 @@ const ProductList = () => {
                                             </Box>
                                         ))}
                                     </Slider>
+                                    : 
+                                    
+                                    <Box  sx={{
+                                        display:'flex',
+                                        justifyContent:'center'
+                                     }}>
+                                        
+                                        <Typography component={'p'} className="nodata">
+                                        No Stores found
+                                        </Typography>
+                                    </Box>}
+                                    </>
                                 </Grid>
                             </Grid>
 
@@ -512,18 +501,32 @@ const ProductList = () => {
                 <Box className="modal-dialog">
                     <Box className="modal-content">
                         <Box className="modal-body form-group">
-                          
-                                <label>Enter Location</label>
-                                <input type={'text'} placeholder="Enter Your Location" className="form-control"  onChange={(e)=>onLocatioChange(e.target.value)}/>
 
-    
+                            <label>Enter Location</label>
+                            <GooglePlacesAutocomplete
+                                apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
+                                selectProps={{
+                                    isClearable: true,
+                                    value,
+                                    onChange: setValue,
+                                    
+                                    // inputValue:{value}
+                                }}
+
+
+
+                            />
+
                         </Box>
                         <Box className="modal-footer">
 
                             <Typography component={"div"} className="submit-btns">
-                                
+
                                 <Button variant="contained" className="" onClick={handleClose}>Close</Button>
-                                <Button variant="contained" className="" onClick={onSubmitLocation}>Submit</Button>
+
+                                {isLoading ?
+                                    <ButtonLoader type="loader" /> :
+                                    <Button variant="contained" className="" onClick={onSubmitLocation}>Submit</Button>}
 
                             </Typography>
                         </Box>

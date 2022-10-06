@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 // Veriables
@@ -153,4 +154,8 @@ p {
 .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked,
 .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate {
   color: $red !important;
+}
+
+.nodata {
+  font-weight: bold!important;
 }

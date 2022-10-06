@@ -10,11 +10,7 @@ const initialValues={
 
 const AuthContext = React.createContext({initialValues}) 
 export const useAuthContext=()=>React.useContext(AuthContext)
-
-
 export const AuthProvider=({children})=>{
-    
-
 const [isLoggedIn, setLoggedIn] = useState(false) 
 const [token, setToken] = useState(null) 
 const [userDetails, setUserDetails] = useState(null) 

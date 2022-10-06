@@ -177,7 +177,8 @@ const categoryList = [
     },
 ]
 
-const ProductFilter = () => {
+const ProductFilter = (props) => {
+    const {currentLocation,onChangeLocation} =props
     const [selectDeliver, setSelectDeliver] = useState(1);
     const [selectSort, setSelectSort] = useState(1);
     const [selectRating, setSelectRating] = useState(1);
@@ -230,8 +231,8 @@ const ProductFilter = () => {
                 <Box className='address__text'>
                     <span className='title'>Now</span>
                     <address>
-                        <span className='add'>Wimbledon Park a...</span>
-                        <span className='change'>Change</span>
+                        <span className='add'>{currentLocation}</span>
+                        <span className='change' onClick={props.onChangeLocation}>Change</span>
                     </address>
                 </Box>
             </Box>

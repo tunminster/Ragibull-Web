@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from 'context/AuthContext/AuthContext';
+
+const AppWrapper=()=>{
+  return <AuthProvider><App/></AuthProvider>
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AppWrapper />
   </React.StrictMode>,
   document.getElementById('root')
 );

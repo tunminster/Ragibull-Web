@@ -199,7 +199,7 @@ $xs: 340px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: block;
-                white-space: nowrap;
+                // white-space: nowrap;
               }
               .change {
                 position: absolute;
@@ -415,4 +415,16 @@ $xs: 340px;
       }
     }
 }
+
+
+.slider feature {
+
+  .slick-track {
+  width: auto!important;
+
+  }
+}
+// .slick-track {
+//   width: auto!important;
+// }
 

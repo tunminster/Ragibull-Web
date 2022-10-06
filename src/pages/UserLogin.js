@@ -62,8 +62,10 @@ const UserLogin = () => {
                 localStorage.removeItem("userData");
                 localStorage.removeItem("isLoggedIn")
                 localStorage.removeItem("t")
+                localStorage.removeItem("a")
                 localStorage.setItem("userData",userData);
                 localStorage.setItem("t",response.auth_token);
+                localStorage.setItem("a",true);
 
                 localStorage.setItem("isLoggedIn",true);
                 authContext.doLogin(true)
