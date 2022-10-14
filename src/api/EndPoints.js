@@ -11,5 +11,6 @@ export const EndPoints = {
     registerUser:"/User/register?culture=en",
     loginUser:"/Auth/login?culture=en",
     searchByLocation:"/v1/Store/Stores-Search",
-    getUserDetails:'User/GetUser?culture=en'
+    getUserDetails:'User/GetUser?culture=en',
+    getStoreDetails:'v1/Store/Store-Details?culture=en'
 }

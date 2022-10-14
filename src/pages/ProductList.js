@@ -15,7 +15,7 @@ import featureImg2 from 'assets/images/feature-img2.jpg';
 import featureImg3 from 'assets/images/feature-img3.jpg';
 import featureImg4 from 'assets/images/feature-img4.jpg';
 import { FaStar } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Geocode from "react-geocode";
 import { useEffect } from 'react';
 import { API } from 'api/API';
@@ -109,6 +109,7 @@ const featureData = [
 ]
 
 const ProductList = () => {
+    const history= useHistory()
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -312,8 +313,8 @@ onAddressSelected(value)
                                     {stores && stores?.length>0?
                                     <Slider {...featureFun}>
                                         {stores.map(item => (
-                                            <Box className='item' key={item.storeId}>
-                                                <Link to="/product-detail">
+                                            <Box className='item' key={item.storeId} >
+                                                <Link to={`/product-detail/${item.storeId}`}>
                                                     <Box className='cover'>
                                                         <img src={item.imageUri} alt={item.storeName} />
                                                         <Box className='text'>

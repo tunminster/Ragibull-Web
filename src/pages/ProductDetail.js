@@ -23,7 +23,11 @@ import Modal from '@mui/material/Modal';
 import popupImg from 'assets/images/product-popup-img.jpg';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useAuthContext } from "context/AuthContext/AuthContext";
+import { API } from "api/API";
+import { useEffect } from "react";
+import ScreenLoader from "components/common/ScreenLoader";
 
 const review = [
   {
@@ -200,11 +204,19 @@ function a11yProps(index) {
 }
 
 const ProductDetail = () => {
+
+  const { id } = useParams()
+
+  const authContext = useAuthContext()
+  const { token } = authContext
   const [value, setValue] = React.useState(0);
   const [selected, setSelected] = useState(1);
   const [open, setOpen] = React.useState(false);
   const [qtyValue, setQtyValue] = useState(1);
   const [price, setPrice] = useState(39);
+  const [storeDetails, setStoreDetails] = useState(null)
+
+  const [loading,setLoading]=useState(true)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -221,8 +233,8 @@ const ProductDetail = () => {
   const handleClose = () => setOpen(false);
 
   const onMinus = () => {
-    if(qtyValue > 1) {
-        setQtyValue(qtyValue - 1)
+    if (qtyValue > 1) {
+      setQtyValue(qtyValue - 1)
     }
   }
   const onPlus = () => {
@@ -232,16 +244,40 @@ const ProductDetail = () => {
     // setPrice(price * qtyValue)
   }
 
+  useEffect(() => {
+    if (token && id)
+      getStoreDetails()
+  }, [id])
+
+
+  const getStoreDetails = async () => {
+    try {
+      const response = await API.getStoreDetails(id, token);
+      if (response?.data) {
+        const data = response.data
+        setStoreDetails(data)
+        console.log({ response });
+      }
+    }
+    catch (e) {
+      console.error(e);
+    }
+    finally {
+      setLoading(false)
+    }
+  }
+
 
   return (
     <React.Fragment>
       <CustomerHeader customClass="customerSearchHeader" />
+      {loading?<ScreenLoader/>:
       <Grid className="productDetail">
         <Grid className="container">
           <Box className="productDetail__gallery">
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
-                <img src={productImg1} alt="" />
+                <img src={storeDetails?.imageUri} alt="" />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Grid container spacing={3}>
@@ -264,15 +300,16 @@ const ProductDetail = () => {
           <Box className="productDetail__info">
             <Grid container spacing={3}>
               <Grid item xs={12} sm={7}>
-                <Typography variant="h2">Rosy Lea Cafe - Mordern</Typography>
+                <Typography variant="h2">{storeDetails?.storeName}</Typography>
                 <p>
-                  Continental, Italian, Fast Food, Pizza, Pasta, Desserts,
-                  Coffee, Beverages
+                 { storeDetails?.storeCategoriesList[0]?.products &&  storeDetails?.storeCategoriesList[0]?.products?.map(product=>(
+                  product?.productName
+                 )).join(" , ")}
                 </p>
                 <Typography component="span" className="price">
                   $95.00 <small>16% Off</small>
                 </Typography>
-                <p>San Francisco, United State</p>
+                <p>{storeDetails?.addressLine1}</p>
                 <p>
                   <span>Open Now:</span>11:30am – 11pm (Today)
                 </p>
@@ -498,8 +535,8 @@ const ProductDetail = () => {
                           ))}
                       </Grid>
                     </Gallery>
-                    <Box sx={{ textAlign: 'center'}}>
-                        <Button variant="contained" className="viewAllPhoto">View Basket</Button>
+                    <Box sx={{ textAlign: 'center' }}>
+                      <Button variant="contained" className="viewAllPhoto">View Basket</Button>
                     </Box>
                   </Grid>
                 </Grid>
@@ -508,8 +545,9 @@ const ProductDetail = () => {
           </Box>
         </Grid>
       </Grid>
+}
 
-    {/* Add To card modal */}
+      {/* Add To card modal */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -518,35 +556,35 @@ const ProductDetail = () => {
         className="modal modal-add-cart"
       >
         <Box className="modal-dialog">
-            <Box className="modal-content">
-                <img src={popupImg} alt="Khichia & Chundo (Ve)" />
-                <Box className="modal-body">
-                    <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    className="title"
-                    >Khichia & Chundo (Ve)</Typography>
-                    <Typography component={'p'}>A fine, crispy snack, not unlike papad. Dip happily in the spiced chutney made to an old family recipe, from dependable apple, not fickle mango. (Vegan)</Typography>
-                    <ul>
-                        <li>393 kcal</li>
-                        <li>Contains mustard</li>
-                    </ul>
-                </Box>
-                <Box className="modal-footer">
-                    <Box className="qty">
-                        <IconButton className="qtyBtn" onClick={onMinus}>
-                            <RemoveIcon />
-                        </IconButton>
-                        <input type={'number'} value={qtyValue} readOnly />
-                        <IconButton className="qtyBtn" onClick={onPlus}>
-                            <AddIcon />
-                        </IconButton>
-                    </Box>
-                    <Link to="/product-orders">
-                      <Button variant="contained" className="add" onClick={handleClose}>Add for $ {price}</Button>
-                    </Link>
-                </Box>
+          <Box className="modal-content">
+            <img src={popupImg} alt="Khichia & Chundo (Ve)" />
+            <Box className="modal-body">
+              <Typography
+                id="modal-modal-title"
+                variant="h6"
+                className="title"
+              >Khichia & Chundo (Ve)</Typography>
+              <Typography component={'p'}>A fine, crispy snack, not unlike papad. Dip happily in the spiced chutney made to an old family recipe, from dependable apple, not fickle mango. (Vegan)</Typography>
+              <ul>
+                <li>393 kcal</li>
+                <li>Contains mustard</li>
+              </ul>
             </Box>
+            <Box className="modal-footer">
+              <Box className="qty">
+                <IconButton className="qtyBtn" onClick={onMinus}>
+                  <RemoveIcon />
+                </IconButton>
+                <input type={'number'} value={qtyValue} readOnly />
+                <IconButton className="qtyBtn" onClick={onPlus}>
+                  <AddIcon />
+                </IconButton>
+              </Box>
+              <Link to="/product-orders">
+                <Button variant="contained" className="add" onClick={handleClose}>Add for $ {price}</Button>
+              </Link>
+            </Box>
+          </Box>
         </Box>
       </Modal>
     </React.Fragment>

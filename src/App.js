@@ -93,7 +93,7 @@ let parsedUserData=JSON.parse(userData)
         <Route exact path="/user-forgot-password" component={UserForgotPassword}></Route>
         <Route exact path="/user-create-password" component={UserCreatePassword}></Route>
         <PrivateRoute exact path="/products" component={ProductList}></PrivateRoute>
-        <PrivateRoute exact path="/product-detail" component={ProductDetail}></PrivateRoute>
+        <PrivateRoute exact path="/product-detail/:id" component={ProductDetail}></PrivateRoute>
         <PrivateRoute exact path="/product-orders" component={ProductOrders}></PrivateRoute>
         <PrivateRoute exact path="/product-order-payment" component={ProductOrderPayment}></PrivateRoute>
         </Switch>
