@@ -21,7 +21,7 @@ RUN apk --no-cache --virtual build-dependencies add \
   make \
   g++
 
-RUN npm install
+RUN npm install --force
 RUN npm run build
 
 #FROM nginx:alpine
