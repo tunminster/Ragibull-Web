@@ -89,20 +89,14 @@ const Home = () => {
           <div className="container">
             <h2 className="About_Title">
               <i>About</i> Ragibull
-              <span>Best product, Best service</span>
+              <span>Delicious food, delivered fast</span>
             </h2>
             <p>
-              RagiBull local delivery and digital menu order. It's not just
-              delivered to your home or office. Download the free RagiBull app
-              and order from local delivery and collection restaurants and
-              takeaways. We can all forget about paper takeaway menu which is
-              not environment friendly, unnecessary cost and awkward phone
-              orders. No more mumbled phone calls to busy restaurants. Use your
-              postcode or device's location service to find local restaurants
-              and takeaway shops to order. Why don't you use just make order
-              form the app before you have just arrived to have fantastic meals
-              or bites whether collection, dine in or takeaway.
+            Welcome to Ragibull, the delivery food SaaS platform that makes mealtime a breeze. Whether you're too busy to cook, craving your favorite restaurant food, or just looking for a hassle-free meal solution, we've got you covered.
             </p>
+            <p>Download the Ragibull delivery app today and enjoy the ultimate in convenience and flexibility when it comes to food delivery. With our easy-to-use app, you can order your favorite meals from hundreds of restaurants with just a few taps on your smartphone. </p>
+            
+            
             <Grid container className="Services">
               {Services.map((item) => (
                 <Grid item sm={4} className="Services_box" key={item.id}>
