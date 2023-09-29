@@ -220,12 +220,13 @@ const Home = () => {
               <Grid container alignItems="center">
                 <Grid item sm={6} className="Steps_Text">
                   <h2>
-                    Have you <span>got the App?</span>
+                    Ordering <span>Web and App?</span>
                   </h2>
                   <p>
                     {" "}
-                    Get Ragibull App and start ordering delicious foods -
-                    available on the iOS and Android app stores!
+                    Driver direct digital sales. Get more online orders
+                    with our customizable, fase and reliable platform!
+                    
                   </p>
                   <div className="download">
                     <h4>Download the App</h4>
